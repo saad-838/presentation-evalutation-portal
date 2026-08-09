@@ -2746,3 +2746,19 @@ svg defs { display: none; }
         gap: 12px;
     }
 }
+/* ============================================================
+   MOBILE VIEWPORT HEIGHT FIX
+   Use dynamic viewport height (dvh) on mobile to prevent
+   layout shift caused by address bar hide/show.
+   ============================================================ */
+@media (max-width: 768px) {
+    .app-wrapper,
+    .main-content,
+    .auth-page,
+    .hero-section {
+        min-height: 100dvh !important;
+    }
+    .sidebar {
+        height: 100dvh !important;
+    }
+}
