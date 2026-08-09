@@ -995,30 +995,38 @@
 </div>
 
 <script>
-    function toggleTargetValue() {
-        const target = document.getElementById('target').value;
-        const container = document.getElementById('targetValueContainer');
-        const label = document.getElementById('targetValueLabel');
-        const input = document.getElementById('target_value');
-
-        if (target === 'all') {
-            container.style.display = 'none';
-            input.required = false;
-        } else {
-            container.style.display = 'block';
-            input.required = true;
-            if (target === 'department') {
-                label.textContent = 'Department Name';
-                input.placeholder = 'e.g., Cyber Security';
-            } else if (target === 'semester') {
-                label.textContent = 'Semester Name';
-                input.placeholder = 'e.g., Semester 1';
-            } else if (target === 'user') {
-                label.textContent = 'Roll Number';
-                input.placeholder = 'e.g., 24CYS01';
+    function resizeAdminCharts() {
+        const isMobile = window.innerWidth <= 576;
+        const lineCanvas = document.getElementById('adminActivityChart');
+        const deptCanvas = document.getElementById('deptChart');
+        if (lineCanvas) {
+            const rect = lineCanvas.getBoundingClientRect();
+            if (isMobile) {
+                lineCanvas.width = rect.width * 2;
+                lineCanvas.height = 180 * 2;
+            } else {
+                // reset to full size if needed? Not necessary.
             }
         }
+        if (deptCanvas) {
+            if (isMobile) {
+                deptCanvas.width = 150 * 2;
+                deptCanvas.height = 150 * 2;
+            }
+        }
+        // Resize Chart.js instances
+        if (window.Chart) {
+            const chart1 = Chart.getChart('adminActivityChart');
+            const chart2 = Chart.getChart('deptChart');
+            if (chart1) chart1.resize();
+            if (chart2) chart2.resize();
+        }
     }
+    document.addEventListener('DOMContentLoaded', function() {
+        // Wait for charts to render
+        setTimeout(resizeAdminCharts, 300);
+        window.addEventListener('resize', resizeAdminCharts);
+    });
 </script>
 
 {% elif section == 'settings' %}

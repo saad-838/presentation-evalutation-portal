@@ -3186,7 +3186,7 @@ svg defs { display: none; }
         font-size: 1.1rem !important;
     }
 
-        /* CHART FIXES */
+            /* CHART FIXES */
     .row.g-4 {
         --bs-gutter-y: 1rem !important;
     }
@@ -3198,11 +3198,21 @@ svg defs { display: none; }
     .content-card .card-body {
         padding: 12px !important;
         overflow: hidden !important;
+        position: relative !important;
+        height: auto !important;
+        min-height: 200px !important;
     }
-    .content-card .card-body canvas {
+    /* Line chart - full width, fixed height */
+    #adminActivityChart {
         width: 100% !important;
-        max-width: 100% !important;
-        height: 200px !important;
+        height: 180px !important;
         display: block !important;
+    }
+    /* Doughnut chart - square, centered */
+    #deptChart {
+        width: 150px !important;
+        height: 150px !important;
+        display: block !important;
+        margin: 0 auto !important;
     }
 }
