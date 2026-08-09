@@ -375,6 +375,30 @@
         });
     </script>
 
-    {% block extra_js %}{% endblock %}
+    {% block extra_js %}
+    <!-- Mobile viewport height fix -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function setViewportHeight() {
+                var vh = window.innerHeight;
+                var selectors = ['.app-wrapper', '.main-content', '.auth-page', '.hero-section', '.sidebar'];
+                selectors.forEach(function(sel) {
+                    var els = document.querySelectorAll(sel);
+                    els.forEach(function(el) {
+                        if (el) {
+                            if (el.classList.contains('sidebar')) {
+                                el.style.height = vh + 'px';
+                            } else {
+                                el.style.minHeight = vh + 'px';
+                            }
+                        }
+                    });
+                });
+            }
+            setViewportHeight();
+            window.addEventListener('resize', setViewportHeight);
+        });
+    </script>
+    {% endblock %}
 </body>
 </html>
