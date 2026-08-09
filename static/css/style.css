@@ -3064,3 +3064,126 @@ svg defs { display: none; }
         font-size: 0.85rem !important;
     }
 }
+/* ============================================================
+   ADMIN PANEL MOBILE FIXES
+   ============================================================ */
+@media (max-width: 576px) {
+    /* Page header */
+    .page-header {
+        flex-direction: column !important;
+        gap: 8px !important;
+        margin-bottom: 16px !important;
+    }
+    .page-title {
+        font-size: 1.25rem !important;
+    }
+    .page-subtitle {
+        font-size: 0.75rem !important;
+    }
+
+    /* Stats grid - single column with smaller cards */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+    }
+    .stat-card {
+        padding: 12px 16px !important;
+        gap: 12px !important;
+    }
+    .stat-card-icon {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 1rem !important;
+    }
+    .stat-value {
+        font-size: 1.25rem !important;
+    }
+    .stat-label {
+        font-size: 0.7rem !important;
+    }
+    .stat-trend {
+        font-size: 0.65rem !important;
+    }
+
+    /* Content cards */
+    .content-card {
+        border-radius: 10px !important;
+    }
+    .card-header-custom {
+        padding: 12px 16px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+    .card-header-custom h3 {
+        font-size: 0.95rem !important;
+        gap: 6px !important;
+    }
+    .card-body {
+        padding: 12px 16px !important;
+    }
+
+    /* Tables - make them scroll horizontally or use card style */
+    .data-table {
+        font-size: 0.75rem !important;
+    }
+    .data-table thead th,
+    .data-table tbody td {
+        padding: 8px 10px !important;
+        font-size: 0.7rem !important;
+    }
+    /* Ensure table doesn't overflow */
+    .table-responsive {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Recent users / presentations lists */
+    .user-thumb-lg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    .user-thumb-lg-placeholder {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.7rem !important;
+    }
+    .action-btns .btn-icon {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* Evaluation cards */
+    .eval-body {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 16px !important;
+        padding: 16px !important;
+    }
+    .eval-score-ring {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .ring-score {
+        font-size: 1.25rem !important;
+    }
+    .eval-breakdown {
+        width: 100% !important;
+    }
+
+    /* Admin profile page */
+    .profile-card .profile-avatar-wrapper {
+        width: 80px !important;
+        height: 80px !important;
+        margin: -40px auto 12px !important;
+    }
+    .profile-avatar-img,
+    .profile-avatar-placeholder {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    .profile-name {
+        font-size: 1.1rem !important;
+    }
+}
