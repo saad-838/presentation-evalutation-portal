@@ -2747,18 +2747,54 @@ svg defs { display: none; }
     }
 }
 /* ============================================================
-   MOBILE VIEWPORT HEIGHT FIX
-   Use dynamic viewport height (dvh) on mobile to prevent
-   layout shift caused by address bar hide/show.
+   LANDING PAGE MOBILE FIXES
    ============================================================ */
-@media (max-width: 768px) {
-    .app-wrapper,
-    .main-content,
-    .auth-page,
+@media (max-width: 576px) {
     .hero-section {
-        min-height: 100dvh !important;
+        padding: 80px 20px 40px !important;
     }
-    .sidebar {
-        height: 100dvh !important;
+    .hero-title {
+        font-size: 2rem !important;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+        max-width: 100% !important;
+        padding: 0 8px;
+    }
+    .hero-actions {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100%;
+    }
+    .hero-actions .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 12px 20px !important;
+        font-size: 0.95rem !important;
+    }
+    .hero-stats {
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: center;
+    }
+    .hero-stat {
+        text-align: center;
+    }
+    .hero-stat .stat-value {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* Extra small devices (very narrow phones) */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 1.6rem !important;
+    }
+    .hero-badge {
+        font-size: 0.75rem !important;
+        padding: 4px 12px !important;
+    }
+    .section-title {
+        font-size: 1.6rem !important;
     }
 }
