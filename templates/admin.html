@@ -993,42 +993,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function resizeAdminCharts() {
-        const isMobile = window.innerWidth <= 576;
-        const lineCanvas = document.getElementById('adminActivityChart');
-        const deptCanvas = document.getElementById('deptChart');
-        if (lineCanvas) {
-            const rect = lineCanvas.getBoundingClientRect();
-            if (isMobile) {
-                lineCanvas.width = rect.width * 2;
-                lineCanvas.height = 180 * 2;
-            } else {
-                // reset to full size if needed? Not necessary.
-            }
-        }
-        if (deptCanvas) {
-            if (isMobile) {
-                deptCanvas.width = 150 * 2;
-                deptCanvas.height = 150 * 2;
-            }
-        }
-        // Resize Chart.js instances
-        if (window.Chart) {
-            const chart1 = Chart.getChart('adminActivityChart');
-            const chart2 = Chart.getChart('deptChart');
-            if (chart1) chart1.resize();
-            if (chart2) chart2.resize();
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        // Wait for charts to render
-        setTimeout(resizeAdminCharts, 300);
-        window.addEventListener('resize', resizeAdminCharts);
-    });
-</script>
-
 {% elif section == 'settings' %}
 
 <div class="page-header" data-aos="fade-down">
@@ -1226,6 +1190,37 @@
             data: { labels: ['CS', 'SE', 'IT', 'AI', 'DS', 'Other'], datasets: [{ data: [25, 20, 18, 15, 12, 10], backgroundColor: ['#2563EB', '#4F46E5', '#06B6D4', '#10B981', '#8B5CF6', '#CBD5E1'], borderWidth: 0, hoverOffset: 8 }] },
             options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } } }
         });
+    });
+</script>
+<!-- Fix chart sizing on mobile -->
+<script>
+    function fixChartSizes() {
+        const isMobile = window.innerWidth <= 576;
+        const lineCanvas = document.getElementById('adminActivityChart');
+        const deptCanvas = document.getElementById('deptChart');
+
+        if (lineCanvas) {
+            if (isMobile) {
+                lineCanvas.width = lineCanvas.clientWidth * 2;
+                lineCanvas.height = 180 * 2;
+            }
+        }
+        if (deptCanvas) {
+            if (isMobile) {
+                deptCanvas.width = 150 * 2;
+                deptCanvas.height = 150 * 2;
+            }
+        }
+        if (window.Chart) {
+            const chart1 = Chart.getChart('adminActivityChart');
+            const chart2 = Chart.getChart('deptChart');
+            if (chart1) chart1.resize();
+            if (chart2) chart2.resize();
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(fixChartSizes, 500);
+        window.addEventListener('resize', fixChartSizes);
     });
 </script>
 {% endif %}
