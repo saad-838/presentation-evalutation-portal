@@ -3186,7 +3186,7 @@ svg defs { display: none; }
         font-size: 1.1rem !important;
     }
 
-    /* CHART FIXES - new rules */
+        /* CHART FIXES */
     .row.g-4 {
         --bs-gutter-y: 1rem !important;
     }
@@ -3197,11 +3197,12 @@ svg defs { display: none; }
     }
     .content-card .card-body {
         padding: 12px !important;
+        overflow: hidden !important;
     }
     .content-card .card-body canvas {
+        width: 100% !important;
         max-width: 100% !important;
-        height: 180px !important;
+        height: 200px !important;
         display: block !important;
-        margin: 0 auto !important;
     }
 }
