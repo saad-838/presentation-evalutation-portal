@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block title %}{% if mode == 'login' %}Sign In{% elif mode == 'register' %}Create Account{% else %}Admin Access{% endif %} - PEP{% endblock %}
+
+{% block public_content %}
+<div class="auth-page">
+    <div class="auth-bg">
+        <div class="auth-gradient"></div>
+        <div class="auth-grid"></div>
+    </div>
+
+    <button class="nav-icon-btn auth-theme-toggle" id="themeTogglePublic" title="Toggle Theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="auth-container">
+        <div class="auth-card" data-aos="fade-up">
+            <div class="auth-header">
+                <a href="/" class="auth-brand">
+                    <div class="brand-icon-sm">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <span>PEP</span>
+                </a>
+                {% if mode == 'login' %}
+                <h1>Welcome Back</h1>
+                <p>Sign in to access your student dashboard</p>
+                {% elif mode == 'register' %}
+                <h1>Create Account</h1>
+                <p>Register to start presenting and tracking your progress</p>
+                {% else %}
+                <h1>Admin Portal</h1>
+                <p>Secure administrative access only</p>
+                {% endif %}
+            </div>
+
+            {% if mode == 'login' %}
+            <form method="POST" action="{{ url_for('login') }}" class="auth-form">
+                <div class="mb-3">
+                    <label class="form-label">Roll Number</label>
+                    <input type="text" class="form-control form-control-lg" name="roll_no" placeholder="e.g., 24CYS01" required>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <div class="form-options">
+                    <label class="form-check">
+                        <input type="checkbox" name="remember" class="form-check-input">
+                        <span class="form-check-label">Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-auth">
+                    <span>Sign In</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Create one</a></p>
+            </div>
+
+            {% elif mode == 'register' %}
+            <form method="POST" action="{{ url_for('register') }}" class="auth-form" enctype="multipart/form-data" id="registerForm">
+                <div class="form-row">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Gmail Address</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="mb-3">
+                        <label class="form-label">Roll Number</label>
+                        <input type="text" class="form-control" name="roll_no" id="regRollNo" placeholder="e.g., 24CYS01" required>
+                        <div class="form-text text-muted mt-1" style="font-size: 0.8rem;">Format: YY + Dept Code + NN (e.g., 24CYS01)</div>
+                        <div class="invalid-feedback" id="rollFeedback">Invalid roll number format for selected department.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Batch (e.g., 2022-2026)</label>
+                        <input type="text" class="form-control" name="batch" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select class="form-select" name="department" id="regDepartment" required>
+                            <option value="" disabled selected>Select Department</option>
+                            {% for dept in departments %}
+                            <option value="{{ dept.name }}">{{ dept.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Semester</label>
+                        <select class="form-select" name="semester" required>
+                            <option value="" disabled selected>Select Semester</option>
+                            {% for sem in semesters %}
+                            <option value="{{ sem.name }}">{{ sem.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                        <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" name="confirm_password" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Profile Picture (Optional)</label>
+                    <input type="file" class="form-control" name="profile_picture" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary btn-auth">
+                    <span>Create Account</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+            </div>
+
+            {% else %}
+            <form method="POST" action="{{ url_for('admin_login') }}" class="auth-form">
+                <div class="admin-notice">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Restricted Area. Authorized personnel only.</span>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Admin Roll Number</label>
+                    <input type="text" class="form-control form-control-lg" name="roll_no" placeholder="e.g., ADMIN001" required>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control form-control-lg" id="password" name="password" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                <button type="submit" class="btn btn-primary btn-auth">
+                    <span>Access Portal</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="auth-footer">
+                <p><a href="{{ url_for('login') }}">Student Login</a></p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    const DEPT_CODES = {
+        'Cyber Security': 'CYS',
+        'Computer Science': 'CS',
+        'Software Engineering': 'SE',
+        'Information Technology': 'IT',
+        'Artificial Intelligence': 'AI',
+        'Electrical Engineering': 'EE',
+        'Computer Engineering': 'CE',
+        'Data Science': 'DS',
+        'Business Administration': 'BA'
+    };
+
+    const rollInput = document.getElementById('regRollNo');
+    const deptSelect = document.getElementById('regDepartment');
+    const feedback = document.getElementById('rollFeedback');
+    const form = document.getElementById('registerForm');
+
+    function validateRoll() {
+        const roll = rollInput.value.trim().toUpperCase();
+        const dept = deptSelect.value;
+        if (!roll || !dept) return true;
+        const code = DEPT_CODES[dept];
+        if (!code) return true;
+        const pattern = new RegExp('^\\d{2}' + code + '\\d{2}$');
+        if (!pattern.test(roll)) {
+            rollInput.classList.add('is-invalid');
+            feedback.textContent = 'Invalid format. Expected: YY' + code + 'NN (e.g., 24' + code + '01)';
+            return false;
+        }
+        rollInput.classList.remove('is-invalid');
+        return true;
+    }
+
+    if (rollInput && deptSelect) {
+        rollInput.addEventListener('blur', validateRoll);
+        deptSelect.addEventListener('change', validateRoll);
+        form.addEventListener('submit', function(e) {
+            if (!validateRoll()) {
+                e.preventDefault();
+                rollInput.focus();
+            }
+        });
+    }
+})();
+</script>
+{% endblock %}

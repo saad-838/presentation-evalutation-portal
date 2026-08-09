@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Presentation Evaluation Portal{% endblock %}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=4">
+
+    <style>
+/* === FORM FIX - LOADS LAST TO OVERRIDE EVERYTHING === */
+.form-floating { position: relative; }
+.form-floating > .form-control,
+.form-floating > .form-select {
+    height: calc(3.5rem + 2px) !important;
+    padding: 1rem 0.75rem !important;
+    border: 1.5px solid var(--border) !important;
+    border-radius: 12px !important;
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+}
+.form-floating > label {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 2 !important;
+    height: 100% !important;
+    padding: 1rem 0.75rem !important;
+    overflow: hidden !important;
+    text-align: start !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    pointer-events: none !important;
+    border: 1px solid transparent !important;
+    transform-origin: 0 0 !important;
+    transition: opacity .1s ease-in-out, transform .1s ease-in-out !important;
+    color: var(--text-muted) !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    background: transparent !important;
+}
+.form-floating > .form-control:focus,
+.form-floating > .form-control:not(:placeholder-shown),
+.form-floating > .form-select {
+    padding-top: 1.625rem !important;
+    padding-bottom: 0.625rem !important;
+}
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    opacity: .9 !important;
+    transform: scale(.85) translateY(-.5rem) translateX(.15rem) !important;
+    color: var(--primary) !important;
+    background: transparent !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 .25rem rgba(37,99,235,.15) !important;
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+}
+.form-floating > textarea.form-control {
+    height: auto !important;
+    min-height: 120px !important;
+    padding-top: 1.625rem !important;
+}
+.form-floating > input[type="file"].form-control {
+    padding-top: 1.625rem !important;
+    padding-bottom: 0.625rem !important;
+}
+.password-toggle {
+    position: absolute !important;
+    right: 12px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: none !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+    cursor: pointer !important;
+    z-index: 5 !important;
+    padding: 4px 8px !important;
+}
+.password-toggle:hover { color: var(--text) !important; }
+.form-check-input:checked {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+[data-bs-theme="dark"] .form-floating > .form-control,
+[data-bs-theme="dark"] .form-floating > .form-select {
+    background-color: var(--surface) !important;
+    color: var(--text) !important;
+    border-color: var(--border) !important;
+}
+[data-bs-theme="dark"] .form-floating > label {
+    color: var(--text-muted) !important;
+}
+[data-bs-theme="dark"] .form-floating > .form-control:focus ~ label,
+[data-bs-theme="dark"] .form-floating > .form-control:not(:placeholder-shown) ~ label,
+[data-bs-theme="dark"] .form-floating > .form-select ~ label {
+    color: var(--primary) !important;
+    background: transparent !important;
+}
+.form-floating > .form-control:-webkit-autofill {
+    -webkit-text-fill-color: var(--text) !important;
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset !important;
+}
+.form-floating > .form-control::placeholder {
+    color: transparent !important;
+}
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2364748b' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 0.75rem center !important;
+    background-size: 16px 12px !important;
+}
+[data-bs-theme="dark"] .form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+}
+</style>
+{% block extra_css %}{% endblock %}
+</head>
+<body class="{% if current_user.is_authenticated %}app-layout{% endif %}">
+
+    <!-- Loading Screen -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Portal</div>
+            <div class="loader-subtext">Preparing your workspace</div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+
+    {% if current_user.is_authenticated %}
+    <!-- App Layout -->
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="brand-title">PEP</span>
+                        <span class="brand-subtitle">Evaluation Portal</span>
+                    </div>
+                </div>
+                <button class="sidebar-close d-lg-none" id="sidebarClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar">
+                    {% if current_user.profile_picture %}
+                    <img src="{{ url_for('static', filename='uploads/' + current_user.profile_picture) }}" alt="Profile">
+                    {% else %}
+                    <div class="avatar-placeholder">
+                        <span>{{ current_user.name[:1] }}</span>
+                    </div>
+                    {% endif %}
+                    <div class="user-status online"></div>
+                </div>
+                <div class="user-info">
+                    <div class="user-name">{{ current_user.name }}</div>
+                    <div class="user-role">{{ current_user.role.title() }}</div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                {% if current_user.role == 'student' %}
+                <div class="nav-section">
+                    <div class="nav-label">Main</div>
+                    <a href="{{ url_for('dashboard') }}" class="nav-item {% if section|default('') == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-grid-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ url_for('profile') }}" class="nav-item {% if section|default('') == 'profile' %}active{% endif %}">
+                        <i class="fas fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="{{ url_for('presentations') }}" class="nav-item {% if section|default('') == 'presentations' %}active{% endif %}">
+                        <i class="fas fa-file-powerpoint"></i>
+                        <span>Presentations</span>
+                    </a>
+                    <a href="{{ url_for('evaluations') }}" class="nav-item {% if section|default('') == 'evaluations' %}active{% endif %}">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Evaluations</span>
+                    </a>
+                    <a href="{{ url_for('feedback') }}" class="nav-item {% if section|default('') == 'feedback' %}active{% endif %}">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Feedback</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">Academic</div>
+                    <div class="nav-item" style="cursor: default;">
+                        <i class="fas fa-graduation-cap" style="color: var(--primary);"></i>
+                        <span>{{ current_user.semester }}</span>
+                    </div>
+                    <div class="nav-item" style="cursor: default;">
+                        <i class="fas fa-building" style="color: var(--indigo);"></i>
+                        <span>{{ current_user.department }}</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">System</div>
+                    <a href="{{ url_for('settings') }}" class="nav-item {% if section|default('') == 'settings' %}active{% endif %}">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                    <a href="{{ url_for('about') }}" class="nav-item {% if section|default('') == 'about' %}active{% endif %}">
+                        <i class="fas fa-info-circle"></i>
+                        <span>About</span>
+                    </a>
+                </div>
+                {% else %}
+                <div class="nav-section">
+                    <div class="nav-label">Administration</div>
+                    <a href="{{ url_for('admin_dashboard') }}" class="nav-item {% if section|default('') == 'dashboard' %}active{% endif %}">
+                        <i class="fas fa-grid-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="{{ url_for('admin_profile') }}" class="nav-item {% if section|default('') == 'profile' %}active{% endif %}">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Admin Profile</span>
+                    </a>
+                    <a href="{{ url_for('admin_users') }}" class="nav-item {% if section|default('') == 'users' %}active{% endif %}">
+                        <i class="fas fa-users"></i>
+                        <span>Users</span>
+                    </a>
+                    <a href="{{ url_for('admin_topics') }}" class="nav-item {% if section|default('') == 'topics' %}active{% endif %}">
+                        <i class="fas fa-tasks"></i>
+                        <span>Topics</span>
+                    </a>
+                    <a href="{{ url_for('admin_presentations') }}" class="nav-item {% if section|default('') == 'presentations' %}active{% endif %}">
+                        <i class="fas fa-file-powerpoint"></i>
+                        <span>Presentations</span>
+                    </a>
+                    <a href="{{ url_for('admin_evaluations') }}" class="nav-item {% if section|default('') == 'evaluations' %}active{% endif %}">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Evaluations</span>
+                    </a>
+                    <a href="{{ url_for('admin_marks') }}" class="nav-item {% if section|default('') == 'marks' %}active{% endif %}">
+                        <i class="fas fa-star"></i>
+                        <span>Marks</span>
+                    </a>
+                    <a href="{{ url_for('admin_notifications') }}" class="nav-item {% if section|default('') == 'notifications' %}active{% endif %}">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                    <a href="{{ url_for('admin_settings') }}" class="nav-item {% if section|default('') == 'settings' %}active{% endif %}">
+                        <i class="fas fa-sliders-h"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+                {% endif %}
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="{{ url_for('logout') }}" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sign Out</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="navbar-left">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ url_for('dashboard') if current_user.role == 'student' else url_for('admin_dashboard') }}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ (section|default('home')).replace('_', ' ').title() }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="navbar-right">
+                    <button class="nav-icon-btn" id="themeToggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="nav-icon-btn" id="notificationBtn" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge" id="notifBadge" style="display:none;">0</span>
+                    </button>
+                    <div class="notification-panel" id="notificationPanel">
+                        <div class="notification-header">
+                            <span>Notifications</span>
+                            <button class="mark-all-read">Mark all read</button>
+                        </div>
+                        <div class="notification-list" id="notificationList">
+                            <div class="notification-empty">No new notifications</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                {% block content %}{% endblock %}
+            </div>
+
+            <!-- Footer -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <span class="footer-logo">PEP</span>
+                        <span class="footer-text">Presentation Evaluation Portal</span>
+                    </div>
+                    <div class="footer-meta">
+                        <span>Developed for Web Technologies</span>
+                        <span class="footer-divider">|</span>
+                        <span>Instructor: Mr. Amir Rasool</span>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    {% else %}
+    <!-- Public Layout -->
+    {% block public_content %}{% endblock %}
+    {% endif %}
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script type="application/json" id="flash-messages">
+{{ get_flashed_messages(with_categories=true) | tojson }}
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var el = document.getElementById('flash-messages');
+            if (!el) return;
+            var messages = JSON.parse(el.textContent);
+            messages.forEach(function(msg) {
+                showToast(msg[1], msg[0]);
+            });
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,355 @@
+{% extends "base.html" %}
+
+{% block title %}Presentation Evaluation Portal - Home{% endblock %}
+
+{% block public_content %}
+<!-- Navigation -->
+<nav class="landing-nav">
+    <div class="nav-container">
+        <a href="/" class="landing-brand">
+            <div class="brand-icon-sm">
+                <i class="fas fa-layer-group"></i>
+            </div>
+            <span>PEP</span>
+        </a>
+        <div class="landing-nav-links">
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            <a href="#technologies">Technologies</a>
+        </div>
+        <div class="landing-nav-actions">
+            <button class="nav-icon-btn" id="themeTogglePublic" title="Toggle Theme" style="margin-right:8px;">
+                <i class="fas fa-moon"></i>
+            </button>
+            <a href="{{ url_for('login') }}" class="btn btn-ghost">Sign In</a>
+            <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-bg">
+        <div class="hero-gradient"></div>
+        <div class="hero-grid"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge" data-aos="fade-down">
+            <i class="fas fa-sparkles"></i>
+            <span>Web Technologies Project</span>
+        </div>
+        <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+            Presentation<br>
+            <span class="gradient-text">Evaluation Portal</span>
+        </h1>
+        <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+            A smart academic platform designed to manage student presentations, assessments, 
+            feedback, and performance tracking with enterprise-grade precision.
+        </p>
+        <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+            <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                <span>Start Presenting</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#features" class="btn btn-ghost btn-lg">
+                <span>Explore Features</span>
+            </a>
+        </div>
+        <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+            <div class="hero-stat">
+                <div class="stat-value">500+</div>
+                <div class="stat-label">Students</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-value">2,000+</div>
+                <div class="stat-label">Presentations</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-value">99.9%</div>
+                <div class="stat-label">Uptime</div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-visual" data-aos="fade-left" data-aos-delay="500">
+        <div class="hero-card hero-card-1">
+            <div class="card-header">
+                <div class="card-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <span class="card-title">Evaluation Score</span>
+            </div>
+            <div class="card-body">
+                <div class="score-circle">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2563EB"/>
+                                <stop offset="100%" style="stop-color:#4F46E5"/>
+                            </linearGradient>
+                        </defs>
+                        <circle class="score-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="score-progress" cx="50" cy="50" r="45" style="stroke-dashoffset: 30;"></circle>
+                    </svg>
+                    <div class="score-value">92%</div>
+                </div>
+                <div class="score-details">
+                    <div class="score-item">
+                        <span class="score-dot" style="background: #2563EB;"></span>
+                        <span>Content Quality</span>
+                        <strong>18/20</strong>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-dot" style="background: #4F46E5;"></span>
+                        <span>Technical</span>
+                        <strong>17/20</strong>
+                    </div>
+                    <div class="score-item">
+                        <span class="score-dot" style="background: #06B6D4;"></span>
+                        <span>Delivery</span>
+                        <strong>19/20</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-card hero-card-2">
+            <div class="card-avatar">
+                <div class="avatar-img"></div>
+                <div class="avatar-info">
+                    <strong>Mr. Amir Rasool</strong>
+                    <span>Web Technologies</span>
+                </div>
+            </div>
+            <div class="card-feedback">
+                <i class="fas fa-quote-left"></i>
+                <p>Excellent presentation skills. Improve practical examples for better understanding.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section" id="features">
+    <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Features</span>
+            <h2 class="section-title">Everything You Need for<br><span class="gradient-text">Academic Excellence</span></h2>
+            <p class="section-desc">Comprehensive tools designed for modern educational environments</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <h3>Smart Uploads</h3>
+                <p>Upload PPT, PPTX, and PDF presentations securely with automatic validation and storage.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="feature-icon" style="background: rgba(79, 70, 229, 0.1); color: #4F46E5;">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3>Real-time Analytics</h3>
+                <p>Track performance with beautiful charts, progress indicators, and detailed statistics.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon" style="background: rgba(6, 182, 212, 0.1); color: #06B6D4;">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Detailed Feedback</h3>
+                <p>Receive structured feedback from instructors with actionable improvement suggestions.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="feature-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure & Private</h3>
+                <p>Enterprise-grade authentication with hashed passwords and protected file access.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon" style="background: rgba(139, 92, 246, 0.1); color: #8B5CF6;">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Fully Responsive</h3>
+                <p>Access your dashboard from any device with a seamless mobile-optimized experience.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="feature-icon" style="background: rgba(236, 72, 153, 0.1); color: #EC4899;">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Instant Notifications</h3>
+                <p>Get notified immediately when your presentation is reviewed or evaluated.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="section-container">
+        <div class="about-grid">
+            <div class="about-content" data-aos="fade-right">
+                <span class="section-tag">About Portal</span>
+                <h2 class="section-title">Built for Modern<br><span class="gradient-text">Education</span></h2>
+                <p class="about-text">
+                    Presentation Evaluation Portal is a smart academic platform designed to manage 
+                    student presentations, assessments, feedback, and performance tracking. It bridges 
+                    the gap between students and instructors with a streamlined digital workflow.
+                </p>
+                <div class="about-features">
+                    <div class="about-item">
+                        <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                        <span>Automated evaluation workflows</span>
+                    </div>
+                    <div class="about-item">
+                        <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                        <span>Multi-criteria assessment rubrics</span>
+                    </div>
+                    <div class="about-item">
+                        <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                        <span>Historical performance tracking</span>
+                    </div>
+                    <div class="about-item">
+                        <i class="fas fa-check-circle" style="color: #10B981;"></i>
+                        <span>Department & semester management</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual" data-aos="fade-left">
+                <div class="about-card">
+                    <div class="about-card-header">
+                        <div class="about-avatar">
+                            <img src="{{ url_for('static', filename='images/instructor.jpg') }}" alt="Instructor">
+                        </div>
+                        <div class="about-instructor">
+                            <h4>Mr. Amir Rasool</h4>
+                            <span>Subject Instructor</span>
+                        </div>
+                    </div>
+                    <div class="about-card-body">
+                        <div class="info-row">
+                            <span>Subject</span>
+                            <strong>Web Technologies</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Department</span>
+                            <strong>Cyber Security</strong>
+                        </div>
+                        <div class="info-row">
+                            <span>Focus</span>
+                            <strong>Full-Stack Development</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Technologies Section -->
+<section class="tech-section" id="technologies">
+    <div class="section-container">
+        <div class="section-header" data-aos="fade-up">
+            <span class="section-tag">Curriculum</span>
+            <h2 class="section-title">Web Technologies<br><span class="gradient-text">Subject Coverage</span></h2>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="tech-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h4>Frontend Development</h4>
+                <p>HTML5, CSS3, JavaScript, responsive design, and modern UI frameworks</p>
+            </div>
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="150">
+                <div class="tech-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <h4>Backend Development</h4>
+                <p>Server-side programming, API design, and business logic implementation</p>
+            </div>
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="tech-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h4>Database Integration</h4>
+                <p>Relational database design, SQL queries, and data persistence</p>
+            </div>
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="250">
+                <div class="tech-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h4>Authentication</h4>
+                <p>Secure login systems, session management, and access control</p>
+            </div>
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="tech-icon">
+                    <i class="fas fa-mobile-screen"></i>
+                </div>
+                <h4>Responsive Design</h4>
+                <p>Mobile-first approach, flexbox, grid layouts, and cross-device compatibility</p>
+            </div>
+            <div class="tech-card" data-aos="zoom-in" data-aos-delay="350">
+                <div class="tech-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h4>Deployment</h4>
+                <p>Cloud hosting, CI/CD pipelines, and production environment configuration</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-bg">
+        <div class="cta-gradient"></div>
+    </div>
+    <div class="section-container">
+        <div class="cta-content" data-aos="fade-up">
+            <h2>Ready to Elevate Your Presentations?</h2>
+            <p>Join hundreds of students already using the portal to track, evaluate, and improve their academic presentations.</p>
+            <a href="{{ url_for('register') }}" class="btn btn-white btn-lg">
+                <span>Create Your Account</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="landing-footer">
+    <div class="footer-container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">
+                    <div class="brand-icon-sm">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <span>Presentation Evaluation Portal</span>
+                </div>
+                <p class="footer-desc">A comprehensive academic platform for managing and evaluating student presentations with precision and elegance.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Platform</h4>
+                <a href="{{ url_for('login') }}">Student Login</a>
+                <a href="{{ url_for('register') }}">Register</a>
+                <a href="#features">Features</a>
+            </div>
+            <div class="footer-col">
+                <h4>Subject</h4>
+                <span>Web Technologies</span>
+                <span>Full-Stack Development</span>
+                <span>Database Systems</span>
+            </div>
+            <div class="footer-col">
+                <h4>Instructor</h4>
+                <span>Mr. Amir Rasool</span>
+                <span>Cyber Security Department</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>Developed for Web Technologies Course</span>
+            <span>Instructor: Mr. Amir Rasool</span>
+        </div>
+    </div>
+</footer>
+{% endblock %}
