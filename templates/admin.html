@@ -157,7 +157,6 @@
             <div class="profile-cover"></div>
             <div class="profile-body">
                 <div class="profile-avatar-wrapper">
-                    {% if current_user.profile_picture %}
                     <img src="{{ url_for('static', filename='images/instructor.jpg') }}">
                     {% else %}
                     <div class="profile-avatar-placeholder">
