@@ -2751,61 +2751,120 @@ svg defs { display: none; }
    ============================================================ */
 @media (max-width: 576px) {
     .hero-section {
-        padding: 70px 16px 30px !important;
+        padding: 60px 16px 20px !important;
     }
     .hero-badge {
-        font-size: 0.7rem !important;
-        padding: 4px 10px !important;
+        font-size: 0.65rem !important;
+        padding: 3px 10px !important;
         white-space: nowrap !important;
-        letter-spacing: 0.3px !important;
+        letter-spacing: 0.2px !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     .hero-title {
-        font-size: 1.8rem !important;
+        font-size: 1.5rem !important;
         line-height: 1.2 !important;
+        word-break: break-word;
     }
     .hero-subtitle {
-        font-size: 0.85rem !important;
+        font-size: 0.8rem !important;
         max-width: 100% !important;
         padding: 0 4px;
         word-break: break-word;
     }
     .hero-actions {
         flex-direction: column !important;
-        gap: 10px !important;
+        gap: 8px !important;
         width: 100%;
     }
     .hero-actions .btn {
         width: 100% !important;
         justify-content: center !important;
-        padding: 10px 16px !important;
-        font-size: 0.9rem !important;
+        padding: 8px 14px !important;
+        font-size: 0.85rem !important;
     }
     .hero-stats {
         flex-direction: column !important;
-        gap: 10px !important;
+        gap: 8px !important;
         align-items: center;
     }
     .hero-stat {
         text-align: center;
     }
     .hero-stat .stat-value {
-        font-size: 1.2rem !important;
+        font-size: 1.1rem !important;
     }
     .hero-stat .stat-label {
-        font-size: 0.75rem !important;
+        font-size: 0.7rem !important;
+    }
+    .hero-visual {
+        display: none !important;
+    }
+
+    /* Fix for all section titles and descriptions */
+    .section-title {
+        font-size: 1.5rem !important;
+        word-break: break-word;
+    }
+    .section-desc {
+        font-size: 0.9rem !important;
+        word-break: break-word;
+        padding: 0 8px;
+    }
+
+    /* About section */
+    .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+    .about-text {
+        font-size: 0.9rem !important;
+        word-break: break-word;
+    }
+    .about-item {
+        font-size: 0.85rem !important;
+    }
+
+    /* Features, tech, etc. */
+    .features-grid,
+    .tech-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .feature-card,
+    .tech-card {
+        padding: 20px !important;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        text-align: center;
+        gap: 6px !important;
     }
 }
 
 /* Extra small devices (very narrow phones) */
 @media (max-width: 400px) {
     .hero-title {
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
     }
     .hero-badge {
-        font-size: 0.6rem !important;
-        padding: 3px 8px !important;
+        font-size: 0.55rem !important;
+        padding: 2px 6px !important;
+    }
+    .hero-subtitle {
+        font-size: 0.75rem !important;
     }
     .section-title {
-        font-size: 1.4rem !important;
+        font-size: 1.3rem !important;
+    }
+    .hero-actions .btn {
+        font-size: 0.8rem !important;
+        padding: 6px 12px !important;
     }
 }
