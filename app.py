@@ -306,15 +306,6 @@ def register():
             flash('Email already registered.', 'error')
             return redirect(url_for('register'))
 
-        profile_pic = ''
-        if 'profile_picture' in request.files:
-            file = request.files['profile_picture']
-            if file and file.filename and allowed_image_file(file.filename):
-                ext = 'jpg'
-                filename = secure_filename(f"{roll_no}_{secrets.token_hex(4)}.{ext}")
-                process_profile_picture(file, filename)
-                profile_pic = filename
-
         user = User(
             name=name,
             email=email,
@@ -323,9 +314,10 @@ def register():
             department=department,
             batch=batch,
             semester=semester,
-            profile_picture=profile_pic,
+            profile_picture='',   # no upload
             role='student'
         )
+            
         db.session.add(user)
         db.session.commit()
         flash('Registration successful! Please log in.', 'success')
@@ -338,6 +330,32 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('index'))
+
+@app.route('/admin/users/delete-all', methods=['POST'])
+@login_required
+@admin_required
+def admin_delete_all_users():
+    """Delete all student accounts and their associated files."""
+    users = User.query.filter_by(role='student').all()
+    count = len(users)
+    for user in users:
+        # Delete profile picture file if exists
+        if user.profile_picture:
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], user.profile_picture))
+            except Exception:
+                pass
+        # Delete all presentation files
+        for pres in user.presentations:
+            try:
+                os.remove(os.path.join(app.config['UPLOAD_FOLDER'], pres.file_path))
+            except Exception:
+                pass
+        # The cascade delete handles all related records (presentations, evaluations, topics, notifications)
+        db.session.delete(user)
+    db.session.commit()
+    flash(f'All {count} student accounts and their data have been permanently deleted.', 'success')
+    return redirect(url_for('admin_users'))
 
 # ==================== STUDENT ROUTES ====================
 
@@ -363,18 +381,6 @@ def profile():
         current_user.batch = request.form.get('batch', current_user.batch)
         current_user.semester = request.form.get('semester', current_user.semester)
 
-        if 'profile_picture' in request.files:
-            file = request.files['profile_picture']
-            if file and file.filename and allowed_image_file(file.filename):
-                ext = 'jpg'
-                filename = secure_filename(f"{current_user.roll_no}_{secrets.token_hex(4)}.{ext}")
-                if current_user.profile_picture:
-                    try:
-                        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], current_user.profile_picture))
-                    except:
-                        pass
-                process_profile_picture(file, filename)
-                current_user.profile_picture = filename
 
         db.session.commit()
         flash('Profile updated successfully.', 'success')
@@ -541,21 +547,6 @@ def admin_profile():
             current_user.password_hash = generate_password_hash(new_password)
             db.session.commit()
             flash('Password updated successfully.', 'success')
-        elif action == 'picture':
-            if 'profile_picture' in request.files:
-                file = request.files['profile_picture']
-                if file and file.filename and allowed_image_file(file.filename):
-                    ext = 'jpg'
-                    filename = secure_filename(f"ADMIN_{current_user.roll_no}_{secrets.token_hex(4)}.{ext}")
-                    if current_user.profile_picture:
-                        try:
-                            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], current_user.profile_picture))
-                        except:
-                            pass
-                    process_profile_picture(file, filename)
-                    current_user.profile_picture = filename
-                    db.session.commit()
-                    flash('Profile picture updated successfully.', 'success')
         return redirect(url_for('admin_profile'))
     return render_template('admin.html', section='profile')
 

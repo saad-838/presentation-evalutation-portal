@@ -157,15 +157,9 @@
             <div class="profile-cover"></div>
             <div class="profile-body">
                 <div class="profile-avatar-wrapper">
-    {% if current_user.profile_picture %}
-        <img src="{{ url_for('uploaded_file', filename=current_user.profile_picture) }}"
-             alt="{{ current_user.name }}"
-             class="profile-avatar-img">
-    {% else %}
-        <div class="profile-avatar-placeholder">
-            <span>{{ current_user.name[:1] }}</span>
-        </div>
-    {% endif %}
+    <img src="{{ url_for('static', filename='images/instructor.jpg') }}"
+         alt="{{ current_user.name }}"
+         class="profile-avatar-img">
     <div class="profile-status online"></div>
 </div>
                 <h3 class="profile-name">{{ current_user.name }}</h3>
@@ -312,10 +306,14 @@
 
 <div class="content-card" data-aos="fade-up" data-aos-delay="100">
     <div class="card-header-custom">
-        <h3><i class="fas fa-users" style="color: #2563EB;"></i> All Students</h3>
-        <div class="header-actions"><input type="text" class="form-control form-control-sm search-input" id="userSearch"
-                placeholder="Search students..."></div>
+    <h3><i class="fas fa-users" style="color: #2563EB;"></i> All Students</h3>
+    <div class="header-actions">
+        <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAllUsersModal">
+            <i class="fas fa-trash"></i> Delete All Users
+        </button>
+        <input type="text" class="form-control form-control-sm search-input" id="userSearch" placeholder="Search students...">
     </div>
+</div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="data-table" id="usersTable">
@@ -436,6 +434,32 @@
                 <div class="modal-footer"><button type="button" class="btn btn-secondary"
                         data-bs-dismiss="modal">Cancel</button><button type="submit"
                         class="btn btn-danger">Delete</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Delete All Users Confirmation Modal -->
+<div class="modal fade" id="deleteAllUsersModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete All Users</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('admin_delete_all_users') }}">
+                <div class="modal-body">
+                    <p><strong>Are you sure?</strong> This will permanently delete <strong>all student accounts</strong> and all their data, including:</p>
+                    <ul>
+                        <li>Profile pictures</li>
+                        <li>Uploaded presentations (PPT, PPTX, PDF)</li>
+                        <li>Evaluations, feedback, topics, notifications</li>
+                    </ul>
+                    <p class="text-danger">This action cannot be undone. The administrator account will <strong>not</strong> be deleted.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Yes, Delete All Users</button>
+                </div>
             </form>
         </div>
     </div>
