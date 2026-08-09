@@ -176,18 +176,9 @@
             <div class="profile-cover"></div>
             <div class="profile-body">
                 <div class="profile-avatar-wrapper">
-                    {% if current_user.profile_picture %}
-                    <img src="{{ url_for('static', filename='uploads/' + current_user.profile_picture) }}" alt="Profile"
-                        class="profile-avatar-img" id="profileAvatarImg">
-                    {% else %}
-                    <div class="profile-avatar-placeholder" id="profileAvatarPlaceholder"><span>{{ current_user.name[:1]
-                            }}</span></div>
-                    {% endif %}
+                    <img src="{{ url_for('static', filename='images/instructor.jpg') }}" alt="Profile"
+                        class="profile-avatar-img">
                     <div class="profile-status online"></div>
-                    <button type="button" class="profile-camera-btn" data-bs-toggle="modal"
-                        data-bs-target="#cropperModal" title="Change Picture">
-                        <i class="fas fa-camera"></i>
-                    </button>
                 </div>
                 <h3 class="profile-name">{{ current_user.name }}</h3>
                 <p class="profile-role">{{ current_user.department }}</p>
@@ -209,9 +200,6 @@
                 <h3><i class="fas fa-user-edit" style="color: #2563EB;"></i> Edit Profile</h3>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ url_for('profile') }}" enctype="multipart/form-data" id="profileForm">
-                    <input type="file" name="profile_picture" id="hiddenProfilePic" accept="image/*"
-                        style="display:none;">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Full Name</label>
@@ -256,44 +244,7 @@
                         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i><span>Save
                                 Changes</span></button>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Profile Picture Cropper Modal -->
-<div class="modal fade" id="cropperModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><i class="fas fa-crop-alt me-2"></i>Crop Profile Picture</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <input type="file" class="form-control" id="cropperFileInput" accept="image/*">
-                </div>
-                <div class="cropper-wrapper" id="cropperWrapper" style="display:none;">
-                    <div class="cropper-viewport" id="cropperViewport">
-                        <img id="cropperImage" src="" alt="Preview" draggable="false">
-                    </div>
-                    <div class="cropper-overlay"></div>
-                </div>
-                <div class="cropper-controls" id="cropperControls" style="display:none;">
-                    <label class="form-label d-block text-center mt-3 mb-1">Zoom</label>
-                    <input type="range" class="form-range" id="cropperZoom" min="0.5" max="3" step="0.05" value="1">
-                </div>
-                <div class="alert alert-info mt-3 mb-0" id="cropperHint">
-                    <i class="fas fa-info-circle me-2"></i>Select an image, then drag to position and use the slider to
-                    zoom.
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="cropperSave" disabled>
-                    <i class="fas fa-crop-alt me-1"></i>Crop & Save
-                </button>
+                </>
             </div>
         </div>
     </div>
@@ -805,12 +756,6 @@
             });
         });
     });
-</script>
-{% endif %}
-
-{% if section == 'profile' %}
-<script>
-    initProfileCropper();
 </script>
 {% endif %}
 
