@@ -242,6 +242,11 @@ def inject_globals():
 
 # ==================== ROUTES ====================
 
+@app.route('/uploads/<filename>')
+@login_required
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
 @app.route('/')
 def index():
     return render_template('index.html')
