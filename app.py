@@ -13,15 +13,16 @@ from werkzeug.utils import secure_filename
 from fpdf import FPDF
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__, instance_path='/tmp/instance')
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:////tmp/instance/app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static', 'uploads')
+app.config['UPLOAD_FOLDER'] = '/tmp/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 
 # Auto-create uploads directory
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+os.makedirs('/tmp/instance', exist_ok=True)
 
 ALLOWED_EXTENSIONS = {'ppt', 'pptx', 'pdf'}
 ALLOWED_IMAGE_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif', 'webp'}
@@ -1090,6 +1091,7 @@ def init_db():
         db.session.commit()
         print("Database initialized successfully.")
 
+init_db()
+
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True)
