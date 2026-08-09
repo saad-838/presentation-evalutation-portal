@@ -15,33 +15,54 @@
 
 <div class="stats-grid">
     <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="stat-card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;"><i class="fas fa-users"></i></div>
-        <div class="stat-card-info"><div class="stat-value" data-counter="{{ stats.total_users }}">0</div><div class="stat-label">Total Students</div></div>
+        <div class="stat-card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;"><i
+                class="fas fa-users"></i></div>
+        <div class="stat-card-info">
+            <div class="stat-value" data-counter="{{ stats.total_users }}">0</div>
+            <div class="stat-label">Total Students</div>
+        </div>
     </div>
     <div class="stat-card" data-aos="fade-up" data-aos-delay="150">
-        <div class="stat-card-icon" style="background: rgba(79, 70, 229, 0.1); color: #4F46E5;"><i class="fas fa-file-powerpoint"></i></div>
-        <div class="stat-card-info"><div class="stat-value" data-counter="{{ stats.total_presentations }}">0</div><div class="stat-label">Presentations</div></div>
+        <div class="stat-card-icon" style="background: rgba(79, 70, 229, 0.1); color: #4F46E5;"><i
+                class="fas fa-file-powerpoint"></i></div>
+        <div class="stat-card-info">
+            <div class="stat-value" data-counter="{{ stats.total_presentations }}">0</div>
+            <div class="stat-label">Presentations</div>
+        </div>
     </div>
     <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="stat-card-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;"><i class="fas fa-hourglass-half"></i></div>
-        <div class="stat-card-info"><div class="stat-value" data-counter="{{ stats.pending_reviews }}">0</div><div class="stat-label">Pending Reviews</div></div>
+        <div class="stat-card-icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;"><i
+                class="fas fa-hourglass-half"></i></div>
+        <div class="stat-card-info">
+            <div class="stat-value" data-counter="{{ stats.pending_reviews }}">0</div>
+            <div class="stat-label">Pending Reviews</div>
+        </div>
     </div>
     <div class="stat-card" data-aos="fade-up" data-aos-delay="250">
-        <div class="stat-card-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;"><i class="fas fa-star"></i></div>
-        <div class="stat-card-info"><div class="stat-value" data-counter="{{ stats.average_marks }}">0</div><div class="stat-label">Average Marks</div></div>
+        <div class="stat-card-icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;"><i
+                class="fas fa-star"></i></div>
+        <div class="stat-card-info">
+            <div class="stat-value" data-counter="{{ stats.average_marks }}">0</div>
+            <div class="stat-label">Average Marks</div>
+        </div>
     </div>
 </div>
 
 <div class="row g-4 mt-2">
     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="300">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-chart-bar" style="color: #2563EB;"></i> Presentation Submissions</h3><span class="text-muted">Monthly activity</span></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-chart-bar" style="color: #2563EB;"></i> Presentation Submissions</h3><span
+                    class="text-muted">Monthly activity</span>
+            </div>
             <div class="card-body"><canvas id="adminActivityChart" height="280"></canvas></div>
         </div>
     </div>
     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="350">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-chart-pie" style="color: #4F46E5;"></i> Department Distribution</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-chart-pie" style="color: #4F46E5;"></i> Department Distribution</h3>
+            </div>
             <div class="card-body"><canvas id="deptChart" height="280"></canvas></div>
         </div>
     </div>
@@ -50,15 +71,33 @@
 <div class="row g-4 mt-2">
     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-clock" style="color: #06B6D4;"></i> Recent Presentations</h3><a href="{{ url_for('admin_presentations') }}" class="btn btn-sm btn-outline-primary">View All</a></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-clock" style="color: #06B6D4;"></i> Recent Presentations</h3><a
+                    href="{{ url_for('admin_presentations') }}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="data-table">
-                        <thead><tr><th>Student</th><th>Title</th><th>Status</th><th>Date</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {% for pres in recent_presentations[:6] %}
-                            <tr><td>{{ pres.student.name }}</td><td>{{ pres.title }}</td><td><span class="status-badge status-{{ pres.status }}">{{ pres.status.title() }}</span></td><td>{{ pres.created_at.strftime('%b %d') }}</td></tr>
-                            {% else %}<tr><td colspan="4" class="text-center py-4 text-muted">No recent presentations</td></tr>{% endfor %}
+                            <tr>
+                                <td>{{ pres.student.name }}</td>
+                                <td>{{ pres.title }}</td>
+                                <td><span class="status-badge status-{{ pres.status }}">{{ pres.status.title() }}</span>
+                                </td>
+                                <td>{{ pres.created_at.strftime('%b %d') }}</td>
+                            </tr>
+                            {% else %}<tr>
+                                <td colspan="4" class="text-center py-4 text-muted">No recent presentations</td>
+                            </tr>{% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -67,15 +106,37 @@
     </div>
     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="450">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-user-plus" style="color: #10B981;"></i> Recent Students</h3><a href="{{ url_for('admin_users') }}" class="btn btn-sm btn-outline-primary">View All</a></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-user-plus" style="color: #10B981;"></i> Recent Students</h3><a
+                    href="{{ url_for('admin_users') }}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="data-table">
-                        <thead><tr><th>Name</th><th>Roll No</th><th>Department</th><th>Joined</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Roll No</th>
+                                <th>Department</th>
+                                <th>Joined</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {% for user in recent_users[:6] %}
-                            <tr><td><div class="user-cell">{% if user.profile_picture %}<img src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}" alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{ user.name[:1] }}</div>{% endif %}<span>{{ user.name }}</span></div></td><td>{{ user.roll_no }}</td><td>{{ user.department }}</td><td>{{ user.created_at.strftime('%b %d') }}</td></tr>
-                            {% else %}<tr><td colspan="4" class="text-center py-4 text-muted">No recent students</td></tr>{% endfor %}
+                            <tr>
+                                <td>
+                                    <div class="user-cell">{% if user.profile_picture %}<img
+                                            src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}"
+                                            alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{
+                                            user.name[:1] }}</div>{% endif %}<span>{{ user.name }}</span></div>
+                                </td>
+                                <td>{{ user.roll_no }}</td>
+                                <td>{{ user.department }}</td>
+                                <td>{{ user.created_at.strftime('%b %d') }}</td>
+                            </tr>
+                            {% else %}<tr>
+                                <td colspan="4" class="text-center py-4 text-muted">No recent students</td>
+                            </tr>{% endfor %}
                         </tbody>
                     </table>
                 </div>
@@ -97,14 +158,12 @@
             <div class="profile-body">
                 <div class="profile-avatar-wrapper">
                     {% if current_user.profile_picture %}
-     <img src="{{ url_for('static', filename='images/instructor.jpg') }}"
-         alt="Admin"
-         class="profile-avatar">
-{% else %}
-    <div class="profile-avatar-placeholder">
-        <span>{{ current_user.name[:1] }}</span>
-    </div>
-{% endif %}
+                    <img src="{{ url_for('static', filename='images/instructor.jpg') }}">
+                    {% else %}
+                    <div class="profile-avatar-placeholder">
+                        <span>{{ current_user.name[:1] }}</span>
+                    </div>
+                    {% endif %}
                     <div class="profile-status online"></div>
                 </div>
                 <h3 class="profile-name">{{ current_user.name }}</h3>
@@ -112,25 +171,30 @@
                 <div class="profile-meta">
                     <div class="meta-item"><i class="fas fa-id-card"></i><span>{{ current_user.roll_no }}</span></div>
                     <div class="meta-item"><i class="fas fa-envelope"></i><span>{{ current_user.email }}</span></div>
-                    <div class="meta-item"><i class="fas fa-building"></i><span>{{ current_user.department }}</span></div>
+                    <div class="meta-item"><i class="fas fa-building"></i><span>{{ current_user.department }}</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-8" data-aos="fade-left">
         <div class="content-card mb-4">
-            <div class="card-header-custom"><h3><i class="fas fa-user-edit" style="color: #2563EB;"></i> Update Profile Info</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-user-edit" style="color: #2563EB;"></i> Update Profile Info</h3>
+            </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('admin_profile') }}" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="info">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ current_user.name }}" required>
+                            <input type="text" class="form-control" name="name" value="{{ current_user.name }}"
+                                required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email Address</label>
-                            <input type="email" class="form-control" name="email" value="{{ current_user.email }}" required>
+                            <input type="email" class="form-control" name="email" value="{{ current_user.email }}"
+                                required>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Roll Number</label>
@@ -142,7 +206,8 @@
                         </div>
                     </div>
                     <div class="mt-4">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i><span>Save Changes</span></button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i><span>Save
+                                Changes</span></button>
                     </div>
                 </form>
             </div>
@@ -150,26 +215,32 @@
         <div class="row g-4">
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="150">
                 <div class="content-card">
-                    <div class="card-header-custom"><h3><i class="fas fa-lock" style="color: #F43F5E;"></i> Change Password</h3></div>
+                    <div class="card-header-custom">
+                        <h3><i class="fas fa-lock" style="color: #F43F5E;"></i> Change Password</h3>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ url_for('admin_profile') }}">
                             <input type="hidden" name="action" value="password">
                             <div class="mb-3 position-relative">
                                 <label class="form-label">Current Password</label>
                                 <input type="password" class="form-control" name="current_password" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i
+                                        class="fas fa-eye"></i></button>
                             </div>
                             <div class="mb-3 position-relative">
                                 <label class="form-label">New Password</label>
                                 <input type="password" class="form-control" name="new_password" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i
+                                        class="fas fa-eye"></i></button>
                             </div>
                             <div class="mb-3 position-relative">
                                 <label class="form-label">Confirm New Password</label>
                                 <input type="password" class="form-control" name="confirm_password" required>
-                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i class="fas fa-eye"></i></button>
+                                <button type="button" class="password-toggle" onclick="togglePassword(this)"><i
+                                        class="fas fa-eye"></i></button>
                             </div>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-key"></i><span>Update Password</span></button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-key"></i><span>Update
+                                    Password</span></button>
                         </form>
                     </div>
                 </div>
@@ -200,7 +271,8 @@
                     <input type="email" class="form-control" name="email" required>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Roll Number <small class="text-muted">(auto-generated if empty)</small></label>
+                    <label class="form-label">Roll Number <small class="text-muted">(auto-generated if
+                            empty)</small></label>
                     <input type="text" class="form-control" name="roll_no" id="adminRollNo" placeholder="e.g., 24CYS01">
                     <div class="invalid-feedback" id="adminRollFeedback">Invalid roll number format.</div>
                 </div>
@@ -208,7 +280,8 @@
                     <label class="form-label">Department</label>
                     <select class="form-select" name="department" id="adminDeptSelect" required>
                         <option value="" disabled selected>Select</option>
-                        {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{% endfor %}
+                        {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{% endfor
+                        %}
                     </select>
                 </div>
                 <div class="col-md-3">
@@ -228,32 +301,64 @@
                 </div>
             </div>
             <div class="mt-3">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i><span>Create Student</span></button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i><span>Create
+                        Student</span></button>
             </div>
         </form>
     </div>
 </div>
 
 <div class="content-card" data-aos="fade-up" data-aos-delay="100">
-    <div class="card-header-custom"><h3><i class="fas fa-users" style="color: #2563EB;"></i> All Students</h3><div class="header-actions"><input type="text" class="form-control form-control-sm search-input" id="userSearch" placeholder="Search students..."></div></div>
+    <div class="card-header-custom">
+        <h3><i class="fas fa-users" style="color: #2563EB;"></i> All Students</h3>
+        <div class="header-actions"><input type="text" class="form-control form-control-sm search-input" id="userSearch"
+                placeholder="Search students..."></div>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="data-table" id="usersTable">
-                <thead><tr><th>Profile</th><th>Name</th><th>Roll No</th><th>Email</th><th>Department</th><th>Batch</th><th>Semester</th><th>Actions</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Profile</th>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Batch</th>
+                        <th>Semester</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for user in users %}
                     <tr>
-                        <td>{% if user.profile_picture %}<img src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}" alt="" class="user-thumb-lg">{% else %}<div class="user-thumb-lg-placeholder">{{ user.name[:1] }}</div>{% endif %}</td>
-                        <td data-label="Name"><strong>{{ user.name }}</strong></td><td data-label="Roll No">{{ user.roll_no }}</td><td data-label="Email">{{ user.email }}</td><td data-label="Department">{{ user.department }}</td><td data-label="Batch">{{ user.batch }}</td><td data-label="Semester">{{ user.semester }}</td>
+                        <td>{% if user.profile_picture %}<img
+                                src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}" alt=""
+                                class="user-thumb-lg">{% else %}<div class="user-thumb-lg-placeholder">{{ user.name[:1]
+                                }}</div>{% endif %}</td>
+                        <td data-label="Name"><strong>{{ user.name }}</strong></td>
+                        <td data-label="Roll No">{{ user.roll_no }}</td>
+                        <td data-label="Email">{{ user.email }}</td>
+                        <td data-label="Department">{{ user.department }}</td>
+                        <td data-label="Batch">{{ user.batch }}</td>
+                        <td data-label="Semester">{{ user.semester }}</td>
                         <td>
                             <div class="action-btns">
-                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#editUser{{ user.id }}" title="Edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#resetPass{{ user.id }}" title="Reset Password"><i class="fas fa-key"></i></button>
-                                <button class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUser{{ user.id }}" title="Delete"><i class="fas fa-trash"></i></button>
+                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#editUser{{ user.id }}" title="Edit"><i
+                                        class="fas fa-edit"></i></button>
+                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#resetPass{{ user.id }}" title="Reset Password"><i
+                                        class="fas fa-key"></i></button>
+                                <button class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#deleteUser{{ user.id }}" title="Delete"><i
+                                        class="fas fa-trash"></i></button>
                             </div>
                         </td>
                     </tr>
-                    {% else %}<tr><td colspan="8" class="text-center py-5 text-muted">No students registered yet</td></tr>{% endfor %}
+                    {% else %}<tr>
+                        <td colspan="8" class="text-center py-5 text-muted">No students registered yet</td>
+                    </tr>{% endfor %}
                 </tbody>
             </table>
         </div>
@@ -264,16 +369,30 @@
 <div class="modal fade" id="editUser{{ user.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Edit Student</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Student</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_edit_user', user_id=user.id) }}">
                 <div class="modal-body">
-                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control" name="name" value="{{ user.name }}" required></div>
-                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" name="email" value="{{ user.email }}" required></div>
-                    <div class="mb-3"><label class="form-label">Department</label><select class="form-select" name="department" required>{% for dept in departments %}<option value="{{ dept.name }}" {% if user.department == dept.name %}selected{% endif %}>{{ dept.name }}</option>{% endfor %}</select></div>
-                    <div class="mb-3"><label class="form-label">Batch</label><input type="text" class="form-control" name="batch" value="{{ user.batch }}" required></div>
-                    <div class="mb-3"><label class="form-label">Semester</label><select class="form-select" name="semester" required>{% for sem in semesters %}<option value="{{ sem.name }}" {% if user.semester == sem.name %}selected{% endif %}>{{ sem.name }}</option>{% endfor %}</select></div>
+                    <div class="mb-3"><label class="form-label">Full Name</label><input type="text" class="form-control"
+                            name="name" value="{{ user.name }}" required></div>
+                    <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control"
+                            name="email" value="{{ user.email }}" required></div>
+                    <div class="mb-3"><label class="form-label">Department</label><select class="form-select"
+                            name="department" required>{% for dept in departments %}<option value="{{ dept.name }}" {%
+                                if user.department==dept.name %}selected{% endif %}>{{ dept.name }}</option>{% endfor
+                            %}</select></div>
+                    <div class="mb-3"><label class="form-label">Batch</label><input type="text" class="form-control"
+                            name="batch" value="{{ user.batch }}" required></div>
+                    <div class="mb-3"><label class="form-label">Semester</label><select class="form-select"
+                            name="semester" required>{% for sem in semesters %}<option value="{{ sem.name }}" {% if
+                                user.semester==sem.name %}selected{% endif %}>{{ sem.name }}</option>{% endfor
+                            %}</select></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save Changes</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save
+                        Changes</button></div>
             </form>
         </div>
     </div>
@@ -282,13 +401,19 @@
 <div class="modal fade" id="resetPass{{ user.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Reset Password</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Reset Password</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_reset_password', user_id=user.id) }}">
                 <div class="modal-body">
                     <p>Reset password for <strong>{{ user.name }}</strong> ({{ user.roll_no }})</p>
-                    <div class="mb-3"><label class="form-label">New Password</label><input type="password" class="form-control" name="new_password" required></div>
+                    <div class="mb-3"><label class="form-label">New Password</label><input type="password"
+                            class="form-control" name="new_password" required></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Reset Password</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Reset
+                        Password</button></div>
             </form>
         </div>
     </div>
@@ -297,10 +422,18 @@
 <div class="modal fade" id="deleteUser{{ user.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Delete Student</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Student</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}">
-                <div class="modal-body"><p>Are you sure you want to delete <strong>{{ user.name }}</strong>? This action cannot be undone.</p></div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-danger">Delete</button></div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete <strong>{{ user.name }}</strong>? This action cannot be undone.
+                    </p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit"
+                        class="btn btn-danger">Delete</button></div>
             </form>
         </div>
     </div>
@@ -316,7 +449,9 @@
 <div class="row g-4">
     <div class="col-lg-4" data-aos="fade-right">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-plus-circle" style="color: #10B981;"></i> Assign New Topic</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-plus-circle" style="color: #10B981;"></i> Assign New Topic</h3>
+            </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('admin_create_topic') }}">
                     <div class="mb-3">
@@ -345,39 +480,68 @@
                     <div class="mb-3">
                         <label class="form-label">Department</label>
                         <select class="form-select" name="department" required>
-                            {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{% endfor %}
+                            {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{%
+                            endfor %}
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100"><i class="fas fa-plus"></i><span>Assign Topic</span></button>
+                    <button type="submit" class="btn btn-primary w-100"><i class="fas fa-plus"></i><span>Assign
+                            Topic</span></button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-8" data-aos="fade-left">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-tasks" style="color: #2563EB;"></i> Assigned Topics</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-tasks" style="color: #2563EB;"></i> Assigned Topics</h3>
+            </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="data-table">
-                        <thead><tr><th>Student</th><th>Title</th><th>Description</th><th>Department</th><th>Semester</th><th>Status</th><th>Actions</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Department</th>
+                                <th>Semester</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {% for topic in topics %}
                             <tr>
-                                <td><div class="user-cell">{% if topic.student.profile_picture %}<img src="{{ url_for('static', filename='uploads/' + topic.student.profile_picture) }}" alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{ topic.student.name[:1] }}</div>{% endif %}<span>{{ topic.student.name }}</span></div></td>
+                                <td>
+                                    <div class="user-cell">{% if topic.student.profile_picture %}<img
+                                            src="{{ url_for('static', filename='uploads/' + topic.student.profile_picture) }}"
+                                            alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{
+                                            topic.student.name[:1] }}</div>{% endif %}<span>{{ topic.student.name
+                                            }}</span></div>
+                                </td>
                                 <td><strong>{{ topic.title }}</strong></td>
-                                <td>{{ topic.description[:40] }}{% if topic.description|length > 40 %}...{% endif %}</td>
+                                <td>{{ topic.description[:40] }}{% if topic.description|length > 40 %}...{% endif %}
+                                </td>
                                 <td>{{ topic.department }}</td>
                                 <td>{{ topic.semester }}</td>
-                                <td><span class="status-badge status-{{ 'pending' if topic.status == 'assigned' else 'approved' }}">{{ topic.status.title() }}</span></td>
+                                <td><span
+                                        class="status-badge status-{{ 'pending' if topic.status == 'assigned' else 'approved' }}">{{
+                                        topic.status.title() }}</span></td>
                                 <td>
                                     <div class="action-btns">
-                                        <button class="btn btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#editTopic{{ topic.id }}"><i class="fas fa-edit"></i></button>
-                                        <button class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTopic{{ topic.id }}"><i class="fas fa-trash"></i></button>
+                                        <button class="btn btn-icon btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#editTopic{{ topic.id }}"><i
+                                                class="fas fa-edit"></i></button>
+                                        <button class="btn btn-icon btn-sm btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deleteTopic{{ topic.id }}"><i
+                                                class="fas fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             {% else %}
-                            <tr><td colspan="7" class="text-center py-5 text-muted">No topics assigned yet</td></tr>
+                            <tr>
+                                <td colspan="7" class="text-center py-5 text-muted">No topics assigned yet</td>
+                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -391,15 +555,28 @@
 <div class="modal fade" id="editTopic{{ topic.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Edit Topic</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Topic</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_edit_topic', topic_id=topic.id) }}">
                 <div class="modal-body">
-                    <div class="mb-3"><label class="form-label">Topic Title</label><input type="text" class="form-control" name="title" value="{{ topic.title }}" required></div>
-                    <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control" name="description" rows="3">{{ topic.description }}</textarea></div>
-                    <div class="mb-3"><label class="form-label">Semester</label><select class="form-select" name="semester" required>{% for sem in semesters %}<option value="{{ sem.name }}" {% if topic.semester == sem.name %}selected{% endif %}>{{ sem.name }}</option>{% endfor %}</select></div>
-                    <div class="mb-3"><label class="form-label">Department</label><select class="form-select" name="department" required>{% for dept in departments %}<option value="{{ dept.name }}" {% if topic.department == dept.name %}selected{% endif %}>{{ dept.name }}</option>{% endfor %}</select></div>
+                    <div class="mb-3"><label class="form-label">Topic Title</label><input type="text"
+                            class="form-control" name="title" value="{{ topic.title }}" required></div>
+                    <div class="mb-3"><label class="form-label">Description</label><textarea class="form-control"
+                            name="description" rows="3">{{ topic.description }}</textarea></div>
+                    <div class="mb-3"><label class="form-label">Semester</label><select class="form-select"
+                            name="semester" required>{% for sem in semesters %}<option value="{{ sem.name }}" {% if
+                                topic.semester==sem.name %}selected{% endif %}>{{ sem.name }}</option>{% endfor
+                            %}</select></div>
+                    <div class="mb-3"><label class="form-label">Department</label><select class="form-select"
+                            name="department" required>{% for dept in departments %}<option value="{{ dept.name }}" {%
+                                if topic.department==dept.name %}selected{% endif %}>{{ dept.name }}</option>{% endfor
+                            %}</select></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save Changes</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Save
+                        Changes</button></div>
             </form>
         </div>
     </div>
@@ -408,10 +585,17 @@
 <div class="modal fade" id="deleteTopic{{ topic.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Delete Topic</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Topic</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_delete_topic', topic_id=topic.id) }}">
-                <div class="modal-body"><p>Delete topic "<strong>{{ topic.title }}</strong>" assigned to {{ topic.student.name }}?</p></div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-danger">Delete</button></div>
+                <div class="modal-body">
+                    <p>Delete topic "<strong>{{ topic.title }}</strong>" assigned to {{ topic.student.name }}?</p>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit"
+                        class="btn btn-danger">Delete</button></div>
             </form>
         </div>
     </div>
@@ -425,26 +609,56 @@
 </div>
 
 <div class="content-card" data-aos="fade-up">
-    <div class="card-header-custom"><h3><i class="fas fa-file-powerpoint" style="color: #2563EB;"></i> All Presentations</h3><input type="text" class="form-control form-control-sm search-input" id="presSearch" placeholder="Search presentations..."></div>
+    <div class="card-header-custom">
+        <h3><i class="fas fa-file-powerpoint" style="color: #2563EB;"></i> All Presentations</h3><input type="text"
+            class="form-control form-control-sm search-input" id="presSearch" placeholder="Search presentations...">
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="data-table" id="presTable">
-                <thead><tr><th>Student</th><th>Title</th><th>Topic</th><th>Department</th><th>Semester</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Title</th>
+                        <th>Topic</th>
+                        <th>Department</th>
+                        <th>Semester</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for pres in presentations %}
                     <tr>
-                        <td data-label="Student"><div class="user-cell">{% if pres.student.profile_picture %}<img src="{{ url_for('static', filename='uploads/' + pres.student.profile_picture) }}" alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{ pres.student.name[:1] }}</div>{% endif %}<span>{{ pres.student.name }}</span></div></td>
-                        <td data-label="Title"><strong>{{ pres.title }}</strong></td><td data-label="Topic">{{ pres.topic }}</td><td data-label="Dept">{{ pres.department }}</td><td data-label="Semester">{{ pres.semester }}</td>
-                        <td><span class="status-badge status-{{ pres.status }}">{{ pres.status.title() }}</span></td><td>{{ pres.created_at.strftime('%b %d, %Y') }}</td>
+                        <td data-label="Student">
+                            <div class="user-cell">{% if pres.student.profile_picture %}<img
+                                    src="{{ url_for('static', filename='uploads/' + pres.student.profile_picture) }}"
+                                    alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{
+                                    pres.student.name[:1] }}</div>{% endif %}<span>{{ pres.student.name }}</span></div>
+                        </td>
+                        <td data-label="Title"><strong>{{ pres.title }}</strong></td>
+                        <td data-label="Topic">{{ pres.topic }}</td>
+                        <td data-label="Dept">{{ pres.department }}</td>
+                        <td data-label="Semester">{{ pres.semester }}</td>
+                        <td><span class="status-badge status-{{ pres.status }}">{{ pres.status.title() }}</span></td>
+                        <td>{{ pres.created_at.strftime('%b %d, %Y') }}</td>
                         <td>
                             <div class="action-btns">
-                                <a href="{{ url_for('download_presentation', pres_id=pres.id) }}" class="btn btn-icon btn-sm" title="Download"><i class="fas fa-download"></i></a>
-                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#reviewPres{{ pres.id }}" title="Review"><i class="fas fa-clipboard-check"></i></button>
-                                <button class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#evaluatePres{{ pres.id }}" title="Evaluate"><i class="fas fa-star"></i></button>
+                                <a href="{{ url_for('download_presentation', pres_id=pres.id) }}"
+                                    class="btn btn-icon btn-sm" title="Download"><i class="fas fa-download"></i></a>
+                                <button class="btn btn-icon btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#reviewPres{{ pres.id }}" title="Review"><i
+                                        class="fas fa-clipboard-check"></i></button>
+                                <button class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#evaluatePres{{ pres.id }}" title="Evaluate"><i
+                                        class="fas fa-star"></i></button>
                             </div>
                         </td>
                     </tr>
-                    {% else %}<tr><td colspan="8" class="text-center py-5 text-muted">No presentations submitted yet</td></tr>{% endfor %}
+                    {% else %}<tr>
+                        <td colspan="8" class="text-center py-5 text-muted">No presentations submitted yet</td>
+                    </tr>{% endfor %}
                 </tbody>
             </table>
         </div>
@@ -455,7 +669,10 @@
 <div class="modal fade" id="reviewPres{{ pres.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Review Presentation</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Review Presentation</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_review_presentation', pres_id=pres.id) }}">
                 <div class="modal-body">
                     <div class="review-info mb-3">
@@ -464,9 +681,18 @@
                         <p><strong>Topic:</strong> {{ pres.topic }}</p>
                         <p><strong>Description:</strong> {{ pres.description }}</p>
                     </div>
-                    <div class="mb-3"><label class="form-label">Status</label><select class="form-select" name="status" required><option value="pending" {% if pres.status == 'pending' %}selected{% endif %}>Pending</option><option value="reviewed" {% if pres.status == 'reviewed' %}selected{% endif %}>Reviewed</option><option value="approved" {% if pres.status == 'approved' %}selected{% endif %}>Approved</option></select></div>
+                    <div class="mb-3"><label class="form-label">Status</label><select class="form-select" name="status"
+                            required>
+                            <option value="pending" {% if pres.status=='pending' %}selected{% endif %}>Pending</option>
+                            <option value="reviewed" {% if pres.status=='reviewed' %}selected{% endif %}>Reviewed
+                            </option>
+                            <option value="approved" {% if pres.status=='approved' %}selected{% endif %}>Approved
+                            </option>
+                        </select></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button><button type="submit" class="btn btn-primary">Update Status</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button><button type="submit" class="btn btn-primary">Update
+                        Status</button></div>
             </form>
         </div>
     </div>
@@ -475,19 +701,37 @@
 <div class="modal fade" id="evaluatePres{{ pres.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Evaluate Presentation</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Evaluate Presentation</h5><button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_evaluate_presentation', pres_id=pres.id) }}">
                 <div class="modal-body">
                     <div class="row g-3">
-                        <div class="col-md-6"><label class="form-label">Content Quality</label><input type="number" step="0.1" class="form-control" name="content_quality" value="{{ pres.evaluation.content_quality if pres.evaluation else 0 }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Technical Knowledge</label><input type="number" step="0.1" class="form-control" name="technical_knowledge" value="{{ pres.evaluation.technical_knowledge if pres.evaluation else 0 }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Presentation Skills</label><input type="number" step="0.1" class="form-control" name="presentation_skills" value="{{ pres.evaluation.presentation_skills if pres.evaluation else 0 }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Communication</label><input type="number" step="0.1" class="form-control" name="communication" value="{{ pres.evaluation.communication if pres.evaluation else 0 }}" required></div>
-                        <div class="col-12"><label class="form-label">Comments / Feedback</label><textarea class="form-control" name="comments" rows="4">{{ pres.evaluation.comments if pres.evaluation else '' }}</textarea></div>
+                        <div class="col-md-6"><label class="form-label">Content Quality</label><input type="number"
+                                step="0.1" class="form-control" name="content_quality"
+                                value="{{ pres.evaluation.content_quality if pres.evaluation else 0 }}" required></div>
+                        <div class="col-md-6"><label class="form-label">Technical Knowledge</label><input type="number"
+                                step="0.1" class="form-control" name="technical_knowledge"
+                                value="{{ pres.evaluation.technical_knowledge if pres.evaluation else 0 }}" required>
+                        </div>
+                        <div class="col-md-6"><label class="form-label">Presentation Skills</label><input type="number"
+                                step="0.1" class="form-control" name="presentation_skills"
+                                value="{{ pres.evaluation.presentation_skills if pres.evaluation else 0 }}" required>
+                        </div>
+                        <div class="col-md-6"><label class="form-label">Communication</label><input type="number"
+                                step="0.1" class="form-control" name="communication"
+                                value="{{ pres.evaluation.communication if pres.evaluation else 0 }}" required></div>
+                        <div class="col-12"><label class="form-label">Comments / Feedback</label><textarea
+                                class="form-control" name="comments"
+                                rows="4">{{ pres.evaluation.comments if pres.evaluation else '' }}</textarea></div>
                     </div>
-                    <div class="mt-3 p-3 bg-light rounded"><small class="text-muted">Maximum total marks: <strong>{{ global_settings.max_marks }}</strong></small></div>
+                    <div class="mt-3 p-3 bg-light rounded"><small class="text-muted">Maximum total marks: <strong>{{
+                                global_settings.max_marks }}</strong></small></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button><button type="submit" class="btn btn-primary">Submit Evaluation</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button><button type="submit" class="btn btn-primary">Submit
+                        Evaluation</button></div>
             </form>
         </div>
     </div>
@@ -501,15 +745,41 @@
 </div>
 
 <div class="content-card" data-aos="fade-up">
-    <div class="card-header-custom"><h3><i class="fas fa-chart-line" style="color: #2563EB;"></i> Evaluation Records</h3></div>
+    <div class="card-header-custom">
+        <h3><i class="fas fa-chart-line" style="color: #2563EB;"></i> Evaluation Records</h3>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="data-table">
-                <thead><tr><th>Student</th><th>Presentation</th><th>Content</th><th>Technical</th><th>Skills</th><th>Communication</th><th>Total</th><th>Evaluator</th><th>Date</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Presentation</th>
+                        <th>Content</th>
+                        <th>Technical</th>
+                        <th>Skills</th>
+                        <th>Communication</th>
+                        <th>Total</th>
+                        <th>Evaluator</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for eval in evaluations %}
-                    <tr><td>{{ eval.presentation.student.name }}</td><td>{{ eval.presentation.title }}</td><td>{{ eval.content_quality }}</td><td>{{ eval.technical_knowledge }}</td><td>{{ eval.presentation_skills }}</td><td>{{ eval.communication }}</td><td><strong class="text-primary">{{ eval.total_marks }}/{{ eval.max_marks }}</strong></td><td>{{ eval.evaluated_by }}</td><td>{{ eval.created_at.strftime('%b %d, %Y') }}</td></tr>
-                    {% else %}<tr><td colspan="9" class="text-center py-5 text-muted">No evaluations recorded yet</td></tr>{% endfor %}
+                    <tr>
+                        <td>{{ eval.presentation.student.name }}</td>
+                        <td>{{ eval.presentation.title }}</td>
+                        <td>{{ eval.content_quality }}</td>
+                        <td>{{ eval.technical_knowledge }}</td>
+                        <td>{{ eval.presentation_skills }}</td>
+                        <td>{{ eval.communication }}</td>
+                        <td><strong class="text-primary">{{ eval.total_marks }}/{{ eval.max_marks }}</strong></td>
+                        <td>{{ eval.evaluated_by }}</td>
+                        <td>{{ eval.created_at.strftime('%b %d, %Y') }}</td>
+                    </tr>
+                    {% else %}<tr>
+                        <td colspan="9" class="text-center py-5 text-muted">No evaluations recorded yet</td>
+                    </tr>{% endfor %}
                 </tbody>
             </table>
         </div>
@@ -519,19 +789,42 @@
 {% elif section == 'marks' %}
 <div class="page-header" data-aos="fade-down">
     <h1 class="page-title">Marks Management</h1>
-    <p class="page-subtitle">View and edit all student marks. Changes are saved immediately and reflected in student panels.</p>
+    <p class="page-subtitle">View and edit all student marks. Changes are saved immediately and reflected in student
+        panels.</p>
 </div>
 
 <div class="content-card" data-aos="fade-up">
-    <div class="card-header-custom"><h3><i class="fas fa-star" style="color: #2563EB;"></i> All Marks</h3><span class="text-muted">Click Edit to modify marks at any time</span></div>
+    <div class="card-header-custom">
+        <h3><i class="fas fa-star" style="color: #2563EB;"></i> All Marks</h3><span class="text-muted">Click Edit to
+            modify marks at any time</span>
+    </div>
     <div class="card-body p-0">
         <div class="table-responsive">
             <table class="data-table">
-                <thead><tr><th>Student</th><th>Presentation</th><th>Content</th><th>Technical</th><th>Skills</th><th>Communication</th><th>Total</th><th>Max</th><th>Comments</th><th>Actions</th></tr></thead>
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Presentation</th>
+                        <th>Content</th>
+                        <th>Technical</th>
+                        <th>Skills</th>
+                        <th>Communication</th>
+                        <th>Total</th>
+                        <th>Max</th>
+                        <th>Comments</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
                 <tbody>
                     {% for eval in evaluations %}
                     <tr>
-                        <td data-label="Student"><div class="user-cell">{% if eval.presentation.student.profile_picture %}<img src="{{ url_for('static', filename='uploads/' + eval.presentation.student.profile_picture) }}" alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{ eval.presentation.student.name[:1] }}</div>{% endif %}<span>{{ eval.presentation.student.name }}</span></div></td>
+                        <td data-label="Student">
+                            <div class="user-cell">{% if eval.presentation.student.profile_picture %}<img
+                                    src="{{ url_for('static', filename='uploads/' + eval.presentation.student.profile_picture) }}"
+                                    alt="" class="user-thumb">{% else %}<div class="user-thumb-placeholder">{{
+                                    eval.presentation.student.name[:1] }}</div>{% endif %}<span>{{
+                                    eval.presentation.student.name }}</span></div>
+                        </td>
                         <td data-label="Presentation">{{ eval.presentation.title }}</td>
                         <td data-label="Content">{{ eval.content_quality }}</td>
                         <td data-label="Technical">{{ eval.technical_knowledge }}</td>
@@ -539,10 +832,15 @@
                         <td data-label="Comm">{{ eval.communication }}</td>
                         <td data-label="Total"><strong class="text-primary">{{ eval.total_marks }}</strong></td>
                         <td data-label="Max">{{ eval.max_marks }}</td>
-                        <td data-label="Comments">{{ eval.comments[:30] }}{% if eval.comments|length > 30 %}...{% endif %}</td>
-                        <td><button class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editMarks{{ eval.id }}"><i class="fas fa-edit"></i></button></td>
+                        <td data-label="Comments">{{ eval.comments[:30] }}{% if eval.comments|length > 30 %}...{% endif
+                            %}</td>
+                        <td><button class="btn btn-icon btn-sm btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#editMarks{{ eval.id }}"><i class="fas fa-edit"></i></button></td>
                     </tr>
-                    {% else %}<tr><td colspan="10" class="text-center py-5 text-muted">No marks recorded yet. Evaluate presentations first.</td></tr>{% endfor %}
+                    {% else %}<tr>
+                        <td colspan="10" class="text-center py-5 text-muted">No marks recorded yet. Evaluate
+                            presentations first.</td>
+                    </tr>{% endfor %}
                 </tbody>
             </table>
         </div>
@@ -553,19 +851,33 @@
 <div class="modal fade" id="editMarks{{ eval.id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-            <div class="modal-header"><h5 class="modal-title">Edit Marks - {{ eval.presentation.student.name }}</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Marks - {{ eval.presentation.student.name }}</h5><button type="button"
+                    class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
             <form method="POST" action="{{ url_for('admin_edit_marks', eval_id=eval.id) }}">
                 <div class="modal-body">
                     <p class="text-muted mb-3">Presentation: <strong>{{ eval.presentation.title }}</strong></p>
                     <div class="row g-3">
-                        <div class="col-md-6"><label class="form-label">Content Quality</label><input type="number" step="0.1" class="form-control" name="content_quality" value="{{ eval.content_quality }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Technical Knowledge</label><input type="number" step="0.1" class="form-control" name="technical_knowledge" value="{{ eval.technical_knowledge }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Presentation Skills</label><input type="number" step="0.1" class="form-control" name="presentation_skills" value="{{ eval.presentation_skills }}" required></div>
-                        <div class="col-md-6"><label class="form-label">Communication</label><input type="number" step="0.1" class="form-control" name="communication" value="{{ eval.communication }}" required></div>
-                        <div class="col-12"><label class="form-label">Comments / Remarks</label><textarea class="form-control" name="comments" rows="4">{{ eval.comments }}</textarea></div>
+                        <div class="col-md-6"><label class="form-label">Content Quality</label><input type="number"
+                                step="0.1" class="form-control" name="content_quality"
+                                value="{{ eval.content_quality }}" required></div>
+                        <div class="col-md-6"><label class="form-label">Technical Knowledge</label><input type="number"
+                                step="0.1" class="form-control" name="technical_knowledge"
+                                value="{{ eval.technical_knowledge }}" required></div>
+                        <div class="col-md-6"><label class="form-label">Presentation Skills</label><input type="number"
+                                step="0.1" class="form-control" name="presentation_skills"
+                                value="{{ eval.presentation_skills }}" required></div>
+                        <div class="col-md-6"><label class="form-label">Communication</label><input type="number"
+                                step="0.1" class="form-control" name="communication" value="{{ eval.communication }}"
+                                required></div>
+                        <div class="col-12"><label class="form-label">Comments / Remarks</label><textarea
+                                class="form-control" name="comments" rows="4">{{ eval.comments }}</textarea></div>
                     </div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Update Marks</button></div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cancel</button><button type="submit" class="btn btn-primary">Update
+                        Marks</button></div>
             </form>
         </div>
     </div>
@@ -587,7 +899,8 @@
             <div class="card-body">
                 <form method="POST" action="{{ url_for('admin_notifications') }}">
                     <div class="form-floating mb-3">
-                        <textarea class="form-control" id="message" name="message" style="height: 100px;" placeholder="Message" required></textarea>
+                        <textarea class="form-control" id="message" name="message" style="height: 100px;"
+                            placeholder="Message" required></textarea>
                         <label for="message">Notification Message</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -600,7 +913,8 @@
                         <label for="target">Target Audience</label>
                     </div>
                     <div class="form-floating mb-3" id="targetValueContainer" style="display:none;">
-                        <input type="text" class="form-control" id="target_value" name="target_value" placeholder="Target Value">
+                        <input type="text" class="form-control" id="target_value" name="target_value"
+                            placeholder="Target Value">
                         <label for="target_value" id="targetValueLabel">Value</label>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">
@@ -642,7 +956,9 @@
                                 <td>{{ notif.created_at.strftime('%b %d, %H:%M') }}</td>
                             </tr>
                             {% else %}
-                            <tr><td colspan="4" class="text-center py-5 text-muted">No notifications sent yet</td></tr>
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-muted">No notifications sent yet</td>
+                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>
@@ -653,30 +969,30 @@
 </div>
 
 <script>
-function toggleTargetValue() {
-    const target = document.getElementById('target').value;
-    const container = document.getElementById('targetValueContainer');
-    const label = document.getElementById('targetValueLabel');
-    const input = document.getElementById('target_value');
+    function toggleTargetValue() {
+        const target = document.getElementById('target').value;
+        const container = document.getElementById('targetValueContainer');
+        const label = document.getElementById('targetValueLabel');
+        const input = document.getElementById('target_value');
 
-    if (target === 'all') {
-        container.style.display = 'none';
-        input.required = false;
-    } else {
-        container.style.display = 'block';
-        input.required = true;
-        if (target === 'department') {
-            label.textContent = 'Department Name';
-            input.placeholder = 'e.g., Cyber Security';
-        } else if (target === 'semester') {
-            label.textContent = 'Semester Name';
-            input.placeholder = 'e.g., Semester 1';
-        } else if (target === 'user') {
-            label.textContent = 'Roll Number';
-            input.placeholder = 'e.g., 24CYS01';
+        if (target === 'all') {
+            container.style.display = 'none';
+            input.required = false;
+        } else {
+            container.style.display = 'block';
+            input.required = true;
+            if (target === 'department') {
+                label.textContent = 'Department Name';
+                input.placeholder = 'e.g., Cyber Security';
+            } else if (target === 'semester') {
+                label.textContent = 'Semester Name';
+                input.placeholder = 'e.g., Semester 1';
+            } else if (target === 'user') {
+                label.textContent = 'Roll Number';
+                input.placeholder = 'e.g., 24CYS01';
+            }
         }
     }
-}
 </script>
 
 {% elif section == 'settings' %}
@@ -689,29 +1005,60 @@ function toggleTargetValue() {
 <div class="row g-4">
     <div class="col-lg-6" data-aos="fade-right">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-sliders-h" style="color: #2563EB;"></i> Evaluation Settings</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-sliders-h" style="color: #2563EB;"></i> Evaluation Settings</h3>
+            </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('admin_settings') }}">
-                    <div class="mb-3"><label class="form-label">Maximum Marks</label><select class="form-select" name="max_marks" required><option value="10" {% if settings.max_marks == 10 %}selected{% endif %}>10 Marks</option><option value="20" {% if settings.max_marks == 20 %}selected{% endif %}>20 Marks</option><option value="50" {% if settings.max_marks == 50 %}selected{% endif %}>50 Marks</option><option value="100" {% if settings.max_marks == 100 %}selected{% endif %}>100 Marks</option></select></div>
-                    <div class="mb-3"><label class="form-label">Criteria (comma-separated)</label><input type="text" class="form-control" name="criteria" value="{{ settings.criteria }}" required></div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i><span>Save Settings</span></button>
+                    <div class="mb-3"><label class="form-label">Maximum Marks</label><select class="form-select"
+                            name="max_marks" required>
+                            <option value="10" {% if settings.max_marks==10 %}selected{% endif %}>10 Marks</option>
+                            <option value="20" {% if settings.max_marks==20 %}selected{% endif %}>20 Marks</option>
+                            <option value="50" {% if settings.max_marks==50 %}selected{% endif %}>50 Marks</option>
+                            <option value="100" {% if settings.max_marks==100 %}selected{% endif %}>100 Marks</option>
+                        </select></div>
+                    <div class="mb-3"><label class="form-label">Criteria (comma-separated)</label><input type="text"
+                            class="form-control" name="criteria" value="{{ settings.criteria }}" required></div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i><span>Save
+                            Settings</span></button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-6" data-aos="fade-left">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-building" style="color: #4F46E5;"></i> Departments</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-building" style="color: #4F46E5;"></i> Departments</h3>
+            </div>
             <div class="card-body">
-                <div class="tag-list mb-3">{% for dept in departments %}<div class="tag-item"><span>{{ dept.name }}</span><form method="POST" action="{{ url_for('admin_delete_department', dept_id=dept.id) }}" class="d-inline"><button type="submit" class="tag-remove"><i class="fas fa-times"></i></button></form></div>{% endfor %}</div>
-                <form method="POST" action="{{ url_for('admin_add_department') }}"><div class="input-group"><input type="text" class="form-control" name="name" placeholder="New Department" required><button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i></button></div></form>
+                <div class="tag-list mb-3">{% for dept in departments %}<div class="tag-item"><span>{{ dept.name
+                            }}</span>
+                        <form method="POST" action="{{ url_for('admin_delete_department', dept_id=dept.id) }}"
+                            class="d-inline"><button type="submit" class="tag-remove"><i
+                                    class="fas fa-times"></i></button></form>
+                    </div>{% endfor %}</div>
+                <form method="POST" action="{{ url_for('admin_add_department') }}">
+                    <div class="input-group"><input type="text" class="form-control" name="name"
+                            placeholder="New Department" required><button type="submit" class="btn btn-primary"><i
+                                class="fas fa-plus"></i></button></div>
+                </form>
             </div>
         </div>
         <div class="content-card mt-4">
-            <div class="card-header-custom"><h3><i class="fas fa-graduation-cap" style="color: #06B6D4;"></i> Semesters</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-graduation-cap" style="color: #06B6D4;"></i> Semesters</h3>
+            </div>
             <div class="card-body">
-                <div class="tag-list mb-3">{% for sem in semesters %}<div class="tag-item"><span>{{ sem.name }}</span><form method="POST" action="{{ url_for('admin_delete_semester', sem_id=sem.id) }}" class="d-inline"><button type="submit" class="tag-remove"><i class="fas fa-times"></i></button></form></div>{% endfor %}</div>
-                <form method="POST" action="{{ url_for('admin_add_semester') }}"><div class="input-group"><input type="text" class="form-control" name="name" placeholder="New Semester" required><button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i></button></div></form>
+                <div class="tag-list mb-3">{% for sem in semesters %}<div class="tag-item"><span>{{ sem.name }}</span>
+                        <form method="POST" action="{{ url_for('admin_delete_semester', sem_id=sem.id) }}"
+                            class="d-inline"><button type="submit" class="tag-remove"><i
+                                    class="fas fa-times"></i></button></form>
+                    </div>{% endfor %}</div>
+                <form method="POST" action="{{ url_for('admin_add_semester') }}">
+                    <div class="input-group"><input type="text" class="form-control" name="name"
+                            placeholder="New Semester" required><button type="submit" class="btn btn-primary"><i
+                                class="fas fa-plus"></i></button></div>
+                </form>
             </div>
         </div>
     </div>
@@ -726,54 +1073,97 @@ function toggleTargetValue() {
 <div class="row g-4">
     <div class="col-lg-5" data-aos="fade-right">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-file-pdf" style="color: #EF4444;"></i> Generate PDF</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-file-pdf" style="color: #EF4444;"></i> Generate PDF</h3>
+            </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('admin_generate_pdf') }}">
                     <div class="mb-3">
                         <label class="form-label fw-bold">Select Columns to Include</label>
                         <div class="row g-2">
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="sno" id="col_sno" checked><label class="form-check-label" for="col_sno">S.No.</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="name" id="col_name" checked><label class="form-check-label" for="col_name">Student Name</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="roll_no" id="col_roll" checked><label class="form-check-label" for="col_roll">Roll Number</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="department" id="col_dept" checked><label class="form-check-label" for="col_dept">Department</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="semester" id="col_sem" checked><label class="form-check-label" for="col_sem">Semester</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="topic" id="col_topic" checked><label class="form-check-label" for="col_topic">Presentation Topic</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="marks" id="col_marks" checked><label class="form-check-label" for="col_marks">Marks</label></div></div>
-                            <div class="col-6"><div class="form-check"><input class="form-check-input" type="checkbox" name="columns" value="remarks" id="col_remarks" checked><label class="form-check-label" for="col_remarks">Remarks</label></div></div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="sno" id="col_sno" checked><label class="form-check-label"
+                                        for="col_sno">S.No.</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="name" id="col_name" checked><label class="form-check-label"
+                                        for="col_name">Student Name</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="roll_no" id="col_roll" checked><label class="form-check-label"
+                                        for="col_roll">Roll Number</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="department" id="col_dept" checked><label class="form-check-label"
+                                        for="col_dept">Department</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="semester" id="col_sem" checked><label class="form-check-label"
+                                        for="col_sem">Semester</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="topic" id="col_topic" checked><label class="form-check-label"
+                                        for="col_topic">Presentation Topic</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="marks" id="col_marks" checked><label class="form-check-label"
+                                        for="col_marks">Marks</label></div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-check"><input class="form-check-input" type="checkbox" name="columns"
+                                        value="remarks" id="col_remarks" checked><label class="form-check-label"
+                                        for="col_remarks">Remarks</label></div>
+                            </div>
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Filter by Department <small class="text-muted">(optional)</small></label>
+                        <label class="form-label">Filter by Department <small
+                                class="text-muted">(optional)</small></label>
                         <select class="form-select" name="department_filter">
                             <option value="">All Departments</option>
-                            {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{% endfor %}
+                            {% for dept in departments %}<option value="{{ dept.name }}">{{ dept.name }}</option>{%
+                            endfor %}
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Filter by Semester <small class="text-muted">(optional)</small></label>
+                        <label class="form-label">Filter by Semester <small
+                                class="text-muted">(optional)</small></label>
                         <select class="form-select" name="semester_filter">
                             <option value="">All Semesters</option>
                             {% for sem in semesters %}<option value="{{ sem.name }}">{{ sem.name }}</option>{% endfor %}
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-danger w-100"><i class="fas fa-file-pdf"></i><span>Generate & Download PDF</span></button>
+                    <button type="submit" class="btn btn-danger w-100"><i class="fas fa-file-pdf"></i><span>Generate &
+                            Download PDF</span></button>
                 </form>
             </div>
         </div>
     </div>
     <div class="col-lg-7" data-aos="fade-left">
         <div class="content-card">
-            <div class="card-header-custom"><h3><i class="fas fa-info-circle" style="color: #2563EB;"></i> PDF Preview Info</h3></div>
+            <div class="card-header-custom">
+                <h3><i class="fas fa-info-circle" style="color: #2563EB;"></i> PDF Preview Info</h3>
+            </div>
             <div class="card-body">
                 <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>The PDF will be generated in landscape A4 format with a professional table layout.
+                    <i class="fas fa-info-circle me-2"></i>The PDF will be generated in landscape A4 format with a
+                    professional table layout.
                 </div>
                 <ul class="list-unstyled mb-0">
                     <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Clean, professional formatting</li>
                     <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Customizable columns</li>
                     <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Department and semester filters</li>
-                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Page numbers and generation timestamp</li>
-                    <li><i class="fas fa-check text-success me-2"></i>Latest presentation topic and marks per student</li>
+                    <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Page numbers and generation timestamp
+                    </li>
+                    <li><i class="fas fa-check text-success me-2"></i>Latest presentation topic and marks per student
+                    </li>
                 </ul>
             </div>
         </div>
@@ -787,72 +1177,72 @@ function toggleTargetValue() {
 {% block extra_js %}
 {% if section == 'dashboard' %}
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/api/stats').then(r => r.json()).then(data => {
-        const ctx1 = document.getElementById('adminActivityChart').getContext('2d');
-        new Chart(ctx1, {
-            type: 'line',
-            data: { labels: data.chart_data.labels.length ? data.chart_data.labels : ['No Data'], datasets: [{ label: 'Submissions', data: data.chart_data.data.length ? data.chart_data.data : [0], borderColor: '#2563EB', backgroundColor: 'rgba(37, 99, 235, 0.1)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#2563EB' }] },
-            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } } }
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/api/stats').then(r => r.json()).then(data => {
+            const ctx1 = document.getElementById('adminActivityChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'line',
+                data: { labels: data.chart_data.labels.length ? data.chart_data.labels : ['No Data'], datasets: [{ label: 'Submissions', data: data.chart_data.data.length ? data.chart_data.data : [0], borderColor: '#2563EB', backgroundColor: 'rgba(37, 99, 235, 0.1)', fill: true, tension: 0.4, pointRadius: 4, pointBackgroundColor: '#2563EB' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { grid: { display: false } } } }
+            });
+        });
+        const ctx2 = document.getElementById('deptChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'doughnut',
+            data: { labels: ['CS', 'SE', 'IT', 'AI', 'DS', 'Other'], datasets: [{ data: [25, 20, 18, 15, 12, 10], backgroundColor: ['#2563EB', '#4F46E5', '#06B6D4', '#10B981', '#8B5CF6', '#CBD5E1'], borderWidth: 0, hoverOffset: 8 }] },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } } }
         });
     });
-    const ctx2 = document.getElementById('deptChart').getContext('2d');
-    new Chart(ctx2, {
-        type: 'doughnut',
-        data: { labels: ['CS', 'SE', 'IT', 'AI', 'DS', 'Other'], datasets: [{ data: [25, 20, 18, 15, 12, 10], backgroundColor: ['#2563EB', '#4F46E5', '#06B6D4', '#10B981', '#8B5CF6', '#CBD5E1'], borderWidth: 0, hoverOffset: 8 }] },
-        options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, padding: 15 } } } }
-    });
-});
 </script>
 {% endif %}
 
 {% if section == 'users' %}
 <script>
-document.getElementById('userSearch').addEventListener('input', function() { const term = this.value.toLowerCase(); document.querySelectorAll('#usersTable tbody tr').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none'; }); });
+    document.getElementById('userSearch').addEventListener('input', function () { const term = this.value.toLowerCase(); document.querySelectorAll('#usersTable tbody tr').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none'; }); });
 
-(function() {
-    const DEPT_CODES = {
-        'Cyber Security': 'CYS', 'Computer Science': 'CS', 'Software Engineering': 'SE',
-        'Information Technology': 'IT', 'Artificial Intelligence': 'AI',
-        'Electrical Engineering': 'EE', 'Computer Engineering': 'CE',
-        'Data Science': 'DS', 'Business Administration': 'BA'
-    };
-    const rollInput = document.getElementById('adminRollNo');
-    const deptSelect = document.getElementById('adminDeptSelect');
-    const form = document.getElementById('adminCreateUserForm');
-    const feedback = document.getElementById('adminRollFeedback');
+    (function () {
+        const DEPT_CODES = {
+            'Cyber Security': 'CYS', 'Computer Science': 'CS', 'Software Engineering': 'SE',
+            'Information Technology': 'IT', 'Artificial Intelligence': 'AI',
+            'Electrical Engineering': 'EE', 'Computer Engineering': 'CE',
+            'Data Science': 'DS', 'Business Administration': 'BA'
+        };
+        const rollInput = document.getElementById('adminRollNo');
+        const deptSelect = document.getElementById('adminDeptSelect');
+        const form = document.getElementById('adminCreateUserForm');
+        const feedback = document.getElementById('adminRollFeedback');
 
-    function validateAdminRoll() {
-        const roll = rollInput.value.trim().toUpperCase();
-        const dept = deptSelect.value;
-        if (!roll || !dept) return true;
-        const code = DEPT_CODES[dept];
-        if (!code) return true;
-        const pattern = new RegExp('^\\d{2}' + code + '\\d{2}$');
-        if (!pattern.test(roll)) {
-            rollInput.classList.add('is-invalid');
-            feedback.textContent = 'Invalid format. Expected: YY' + code + 'NN (e.g., 24' + code + '01)';
-            return false;
-        }
-        rollInput.classList.remove('is-invalid');
-        return true;
-    }
-
-    if (rollInput && deptSelect) {
-        rollInput.addEventListener('blur', validateAdminRoll);
-        deptSelect.addEventListener('change', validateAdminRoll);
-        form.addEventListener('submit', function(e) {
-            if (rollInput.value.trim() && !validateAdminRoll()) {
-                e.preventDefault();
-                rollInput.focus();
+        function validateAdminRoll() {
+            const roll = rollInput.value.trim().toUpperCase();
+            const dept = deptSelect.value;
+            if (!roll || !dept) return true;
+            const code = DEPT_CODES[dept];
+            if (!code) return true;
+            const pattern = new RegExp('^\\d{2}' + code + '\\d{2}$');
+            if (!pattern.test(roll)) {
+                rollInput.classList.add('is-invalid');
+                feedback.textContent = 'Invalid format. Expected: YY' + code + 'NN (e.g., 24' + code + '01)';
+                return false;
             }
-        });
-    }
-})();
+            rollInput.classList.remove('is-invalid');
+            return true;
+        }
+
+        if (rollInput && deptSelect) {
+            rollInput.addEventListener('blur', validateAdminRoll);
+            deptSelect.addEventListener('change', validateAdminRoll);
+            form.addEventListener('submit', function (e) {
+                if (rollInput.value.trim() && !validateAdminRoll()) {
+                    e.preventDefault();
+                    rollInput.focus();
+                }
+            });
+        }
+    })();
 </script>
 {% endif %}
 
 {% if section == 'presentations' %}
-<script>document.getElementById('presSearch').addEventListener('input', function() { const term = this.value.toLowerCase(); document.querySelectorAll('#presTable tbody tr').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none'; }); });</script>
+<script>document.getElementById('presSearch').addEventListener('input', function () { const term = this.value.toLowerCase(); document.querySelectorAll('#presTable tbody tr').forEach(row => { row.style.display = row.textContent.toLowerCase().includes(term) ? '' : 'none'; }); });</script>
 {% endif %}
 {% endblock %}
