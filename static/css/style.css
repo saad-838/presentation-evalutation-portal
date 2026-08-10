@@ -3065,226 +3065,169 @@ svg defs { display: none; }
     }
 }
 /* ============================================================
-   ADMIN PANEL MOBILE FIXES
+   ADMIN PANEL COMPLETE MOBILE FIXES
+   (Matches landing page mobile styles)
    ============================================================ */
 @media (max-width: 576px) {
-    /* Page header */
-    .page-header {
-        flex-direction: column !important;
-        gap: 8px !important;
-        margin-bottom: 16px !important;
+    /* ---- Top Navbar ---- */
+    .top-navbar {
+        padding: 0 12px !important;
+        height: 56px !important;
     }
-    .page-title {
-        font-size: 1.25rem !important;
-    }
-    .page-subtitle {
-        font-size: 0.75rem !important;
-    }
-
-    /* Stats grid */
-    .stats-grid {
-        grid-template-columns: 1fr !important;
-        gap: 10px !important;
-    }
-    .stat-card {
-        padding: 12px 16px !important;
-        gap: 12px !important;
-    }
-    .stat-card-icon {
-        width: 36px !important;
-        height: 36px !important;
-        font-size: 1rem !important;
-    }
-    .stat-value {
-        font-size: 1.25rem !important;
-    }
-    .stat-label {
-        font-size: 0.7rem !important;
-    }
-    .stat-trend {
-        font-size: 0.65rem !important;
-    }
-
-    /* Content cards */
-    .content-card {
-        border-radius: 10px !important;
-        margin-bottom: 16px !important;
-    }
-    .card-header-custom {
-        padding: 12px 16px !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 8px !important;
-    }
-    .card-header-custom h3 {
-        font-size: 0.95rem !important;
+    .top-navbar .navbar-left {
         gap: 6px !important;
     }
-    .card-header-custom .header-actions {
-        width: 100% !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 8px !important;
+    .top-navbar .sidebar-toggle {
+        font-size: 0.9rem !important;
+        padding: 4px !important;
     }
-    .card-header-custom .header-actions .btn {
-        width: 100% !important;
-        justify-content: center !important;
+    .top-navbar .breadcrumb {
+        font-size: 0.7rem !important;
+        margin: 0 !important;
     }
-    .card-header-custom .header-actions .search-input {
-        width: 100% !important;
-        min-width: unset !important;
+    .top-navbar .breadcrumb-item a,
+    .top-navbar .breadcrumb-item.active {
+        font-size: 0.7rem !important;
     }
-    .card-body {
-        padding: 12px 16px !important;
+    .top-navbar .nav-icon-btn {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.8rem !important;
     }
 
-    /* Tables */
+    /* ---- Page Header ---- */
+    .page-header {
+        flex-direction: column !important;
+        gap: 4px !important;
+        margin-bottom: 12px !important;
+    }
+    .page-title {
+        font-size: 1.2rem !important;
+    }
+    .page-subtitle {
+        font-size: 0.7rem !important;
+    }
+    .page-actions {
+        width: 100% !important;
+        justify-content: flex-start !important;
+    }
+    .badge {
+        font-size: 0.65rem !important;
+        padding: 3px 8px !important;
+    }
+
+    /* ---- Stats Grid (2 columns on small phones) ---- */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+    }
+    .stat-card {
+        padding: 8px 10px !important;
+        gap: 6px !important;
+    }
+    .stat-card-icon {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.7rem !important;
+    }
+    .stat-value {
+        font-size: 0.95rem !important;
+    }
+    .stat-label {
+        font-size: 0.6rem !important;
+    }
+    .stat-trend {
+        font-size: 0.55rem !important;
+        margin-top: 2px !important;
+    }
+
+    /* ---- Content Cards & Charts ---- */
+    .content-card {
+        border-radius: 10px !important;
+        margin-bottom: 12px !important;
+    }
+    .card-header-custom {
+        padding: 8px 12px !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 4px !important;
+        flex-wrap: wrap !important;
+    }
+    .card-header-custom h3 {
+        font-size: 0.8rem !important;
+        gap: 4px !important;
+    }
+    .card-header-custom h3 i {
+        font-size: 0.8rem !important;
+    }
+    .card-header-custom .text-muted {
+        font-size: 0.6rem !important;
+    }
+    .card-header-custom .btn-sm {
+        font-size: 0.6rem !important;
+        padding: 3px 8px !important;
+    }
+    .card-body {
+        padding: 8px 12px !important;
+    }
+    .card-body canvas {
+        width: 100% !important;
+        height: 160px !important;
+        display: block !important;
+    }
+
+    /* ---- Tables ---- */
     .data-table {
-        font-size: 0.75rem !important;
+        font-size: 0.65rem !important;
     }
     .data-table thead th,
     .data-table tbody td {
-        padding: 8px 10px !important;
-        font-size: 0.7rem !important;
+        padding: 4px 6px !important;
+        font-size: 0.6rem !important;
+    }
+    .data-table .user-thumb {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .data-table .user-thumb-placeholder {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 0.6rem !important;
+    }
+    .data-table .action-btns .btn-icon {
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.6rem !important;
     }
     .table-responsive {
         overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch;
-    }
-    .table-responsive table {
-        min-width: 400px !important;
-        width: 100% !important;
-    }
-    .table-responsive table td,
-    .table-responsive table th {
-        white-space: nowrap !important;
-        padding: 6px 8px !important;
-        font-size: 0.7rem !important;
-    }
-    .table-responsive .user-thumb {
-        width: 24px !important;
-        height: 24px !important;
-    }
-    .table-responsive .user-thumb-placeholder {
-        width: 24px !important;
-        height: 24px !important;
-        font-size: 0.6rem !important;
-    }
-    .table-responsive .status-badge {
-        font-size: 0.6rem !important;
-        padding: 2px 8px !important;
     }
 
-    /* Action buttons */
-    .action-btns .btn-icon {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 0.7rem !important;
-    }
-
-    /* Evaluation cards */
-    .eval-body {
-        flex-direction: column !important;
-        align-items: center !important;
-        gap: 16px !important;
-        padding: 16px !important;
-    }
-    .eval-score-ring {
-        width: 100px !important;
-        height: 100px !important;
-    }
-    .ring-score {
-        font-size: 1.25rem !important;
-    }
-    .eval-breakdown {
-        width: 100% !important;
-    }
-
-    /* Admin profile */
-    .profile-card .profile-avatar-wrapper {
-        width: 80px !important;
-        height: 80px !important;
-        margin: -40px auto 12px !important;
-    }
-    .profile-avatar-img,
-    .profile-avatar-placeholder {
-        width: 80px !important;
-        height: 80px !important;
-    }
-    .profile-name {
-        font-size: 1.1rem !important;
-    }
-
-    /* Charts */
-    .row.g-4 {
-        --bs-gutter-y: 1rem !important;
-    }
-    .row.g-4 > [class*="col-"] {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        margin-bottom: 1rem !important;
-    }
-    .content-card .card-body {
-        padding: 12px !important;
-        overflow: hidden !important;
-        position: relative !important;
-        height: auto !important;
-        min-height: 200px !important;
-    }
-    #adminActivityChart {
-        width: 100% !important;
-        height: 180px !important;
-        display: block !important;
-    }
-    #deptChart {
-        width: 150px !important;
-        height: 150px !important;
-        display: block !important;
-        margin: 0 auto !important;
-    }
-
-    /* Footer */
-    .app-footer .footer-content {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 8px !important;
-    }
-    .app-footer .footer-meta {
-        flex-direction: column !important;
-        gap: 4px !important;
-    }
-    .app-footer .footer-divider {
-        display: none !important;
-    }
-    /* ============================================================
-   FOOTER MOBILE FIX
-   ============================================================ */
-@media (max-width: 576px) {
+    /* ---- Footer ---- */
     .app-footer {
-        padding: 12px 16px !important;
+        padding: 8px 12px !important;
     }
     .footer-content {
         flex-direction: column !important;
         align-items: center !important;
-        gap: 6px !important;
+        gap: 4px !important;
         text-align: center;
+    }
+    .footer-brand {
+        gap: 4px !important;
+    }
+    .footer-logo {
+        font-size: 0.8rem !important;
+    }
+    .footer-text {
+        font-size: 0.6rem !important;
     }
     .footer-meta {
         flex-direction: column !important;
-        gap: 4px !important;
+        gap: 2px !important;
+        font-size: 0.55rem !important;
     }
     .footer-divider {
         display: none !important;
     }
-    @media (max-width: 576px) {
-    .stats-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
-    .stat-card { padding: 12px 16px !important; }
-    .content-card { border-radius: 10px !important; }
-    .card-header-custom { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
-    .data-table { font-size: 0.75rem !important; }
-    .data-table thead th, .data-table tbody td { padding: 8px 10px !important; font-size: 0.7rem !important; }
-    .table-responsive { overflow-x: auto !important; }
-    #adminActivityChart { width: 100% !important; height: 180px !important; }
-    #deptChart { width: 150px !important; height: 150px !important; margin: 0 auto !important; }
-}
 }
