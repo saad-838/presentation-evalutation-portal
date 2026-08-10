@@ -1,11 +1,11 @@
 import os
 import re
 import secrets
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from functools import wraps
 from io import BytesIO
 
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_from_directory, abort, send_file
+from flask import Flask, session, render_template, request, redirect, url_for, flash, jsonify, send_from_directory, abort, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,12 +13,21 @@ from werkzeug.utils import secure_filename
 from fpdf import FPDF
 from PIL import Image
 
-app = Flask(__name__, instance_path='/tmp/instance')
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+app = Flask(__name__)
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')  # Fail in prod if missing
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:////tmp/instance/app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = '/tmp/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
+
+# === SESSION PERSISTENCE FIX ===
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=30)
+app.config['REMEMBER_COOKIE_HTTPONLY'] = True
+app.config['REMEMBER_COOKIE_SAMESITE'] = 'Lax'
 
 # Auto-create uploads directory
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
@@ -264,7 +273,8 @@ def login():
             if user.role == 'admin':
                 flash('Please use the admin portal to log in as administrator.', 'warning')
                 return redirect(url_for('login'))
-            login_user(user, remember=remember)
+            login_user(user, remember=True)  # Always remember to prevent accidental logout
+            session.permanent = True         # Force session to persist beyond browser session
             flash(f'Welcome back, {user.name}!', 'success')
             return redirect(url_for('dashboard'))
         flash('Invalid roll number or password.', 'error')
@@ -508,7 +518,8 @@ def admin_login():
         password = request.form.get('password', '')
         user = User.query.filter_by(roll_no=roll_no, role='admin').first()
         if user and check_password_hash(user.password_hash, password):
-            login_user(user)
+            login_user(user, remember=True)  # Always remember to prevent accidental logout
+            session.permanent = True         # Force session to persist beyond browser session
             flash('Welcome to the Admin Portal.', 'success')
             return redirect(url_for('admin_dashboard'))
         flash('Invalid admin credentials.', 'error')
