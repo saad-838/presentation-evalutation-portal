@@ -3336,8 +3336,8 @@ svg defs { display: none; }
     .card-body canvas {
         display: block !important;
 
-        width: 90% !important;
-        max-width: 90% !important;
+        width: 100% !important;
+        max-width: 100% !important;
 
         box-sizing: border-box !important;
     }
