@@ -3256,4 +3256,35 @@ svg defs { display: none; }
     .app-footer .footer-divider {
         display: none !important;
     }
+    /* ============================================================
+   FOOTER MOBILE FIX
+   ============================================================ */
+@media (max-width: 576px) {
+    .app-footer {
+        padding: 12px 16px !important;
+    }
+    .footer-content {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+        text-align: center;
+    }
+    .footer-meta {
+        flex-direction: column !important;
+        gap: 4px !important;
+    }
+    .footer-divider {
+        display: none !important;
+    }
+    @media (max-width: 576px) {
+    .stats-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+    .stat-card { padding: 12px 16px !important; }
+    .content-card { border-radius: 10px !important; }
+    .card-header-custom { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+    .data-table { font-size: 0.75rem !important; }
+    .data-table thead th, .data-table tbody td { padding: 8px 10px !important; font-size: 0.7rem !important; }
+    .table-responsive { overflow-x: auto !important; }
+    #adminActivityChart { width: 100% !important; height: 180px !important; }
+    #deptChart { width: 150px !important; height: 150px !important; margin: 0 auto !important; }
+}
 }
