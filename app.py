@@ -1,7 +1,7 @@
 import os
 import re
 import secrets
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 from functools import wraps
 from io import BytesIO
 
@@ -15,19 +15,40 @@ from PIL import Image
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')  # Fail in prod if missing
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:////tmp/instance/app.db')
+# --- Secret key (must be set in production) ---
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-production')
+
+# --- Database configuration: use PostgreSQL if DATABASE_URL is set, otherwise SQLite ---
+DATABASE_URL = os.environ.get('DATABASE_URL')
+if DATABASE_URL:
+    # Vercel provides 'postgres://' but SQLAlchemy expects 'postgresql://'
+    if DATABASE_URL.startswith('postgres://'):
+        DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+    app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+    # Pool settings for production (optional)
+    app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+        'pool_pre_ping': True,
+        'pool_recycle': 300,
+    }
+else:
+    # Fallback to SQLite for local development (stored in /tmp, ephemeral on Vercel)
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/instance/app.db'
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = '/tmp/uploads'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max upload
 
-# === SESSION PERSISTENCE FIX ===
+# --- Session persistence ---
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.config['REMEMBER_COOKIE_DURATION'] = timedelta(days=30)
 app.config['REMEMBER_COOKIE_HTTPONLY'] = True
 app.config['REMEMBER_COOKIE_SAMESITE'] = 'Lax'
+
+# If using PostgreSQL (production), enforce HTTPS cookies
+if DATABASE_URL:
+    app.config['SESSION_COOKIE_SECURE'] = True
 
 # Auto-create uploads directory
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
