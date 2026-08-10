@@ -3065,299 +3065,273 @@ svg defs { display: none; }
     }
 }
 /* ============================================================
-   ADMIN PANEL - COMPLETE MOBILE RESPONSIVE FIX
+   ADMIN PANEL - SAFE MOBILE RESPONSIVE FIX
    ============================================================ */
 
 @media (max-width: 576px) {
 
-    /* ---------------------------------------------------------
-       GLOBAL MOBILE FIX
-       --------------------------------------------------------- */
+    /* ---------------- GLOBAL ---------------- */
 
     html,
     body {
-        width: 100%;
         max-width: 100%;
         overflow-x: hidden !important;
     }
 
-    * {
-        box-sizing: border-box;
-    }
 
-
-    /* ---------------------------------------------------------
-       TOP NAVBAR
-       --------------------------------------------------------- */
+    /* ---------------- TOP NAVBAR ---------------- */
 
     .top-navbar {
         width: 100% !important;
-        height: 54px !important;
-        min-height: 54px !important;
+        max-width: 100% !important;
+        height: 56px !important;
+        min-height: 56px !important;
         padding: 0 10px !important;
+
         display: flex !important;
         align-items: center !important;
+        justify-content: space-between !important;
+
+        box-sizing: border-box !important;
         overflow: hidden !important;
     }
 
     .top-navbar .navbar-left {
         display: flex !important;
         align-items: center !important;
+
         gap: 6px !important;
+
         min-width: 0 !important;
-        flex: 1 !important;
+        flex: 1 1 auto !important;
     }
 
     .top-navbar .sidebar-toggle {
+        flex: 0 0 auto !important;
+
         width: 32px !important;
         height: 32px !important;
-        min-width: 32px !important;
+
         padding: 0 !important;
+
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 0.85rem !important;
+
+        font-size: 0.9rem !important;
     }
 
     .top-navbar .breadcrumb {
-        display: flex !important;
-        align-items: center !important;
         min-width: 0 !important;
-        max-width: calc(100vw - 100px) !important;
+        max-width: 100% !important;
+
         margin: 0 !important;
         padding: 0 !important;
-        font-size: 0.68rem !important;
+
+        font-size: 0.7rem !important;
+
         white-space: nowrap !important;
         overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
 
-    .top-navbar .breadcrumb-item {
-        font-size: 0.68rem !important;
-        white-space: nowrap !important;
-    }
-
+    .top-navbar .breadcrumb-item,
     .top-navbar .breadcrumb-item a,
     .top-navbar .breadcrumb-item.active {
-        font-size: 0.68rem !important;
+        font-size: 0.7rem !important;
     }
 
+    /* Keep Day/Night toggle close to the navbar content */
     .top-navbar .nav-icon-btn {
-        width: 30px !important;
-        height: 30px !important;
-        min-width: 30px !important;
+        flex: 0 0 auto !important;
+
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+
+        margin-left: 6px !important;
         padding: 0 !important;
-        font-size: 0.75rem !important;
-    }
 
-
-    /* ---------------------------------------------------------
-       MAIN PAGE / CONTENT SPACING
-       --------------------------------------------------------- */
-
-    .page-content,
-    .main-content {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        overflow-x: hidden !important;
-    }
-
-    .page-container,
-    .content-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-        min-width: 0 !important;
-    }
-
-
-    /* ---------------------------------------------------------
-       PAGE HEADER
-       --------------------------------------------------------- */
-
-    .page-header {
-        width: 100% !important;
-        max-width: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 5px !important;
-        margin-bottom: 14px !important;
-        min-width: 0 !important;
-    }
-
-    .page-title {
-        width: 100% !important;
-        font-size: 1.15rem !important;
-        line-height: 1.3 !important;
-        margin: 0 !important;
-        overflow-wrap: break-word !important;
-    }
-
-    .page-subtitle {
-        width: 100% !important;
-        font-size: 0.68rem !important;
-        line-height: 1.5 !important;
-        margin: 0 !important;
-        overflow-wrap: break-word !important;
-    }
-
-    .page-actions {
-        width: 100% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-start !important;
-        flex-wrap: wrap !important;
-        gap: 6px !important;
-    }
-
-    .badge {
-        font-size: 0.62rem !important;
-        padding: 4px 9px !important;
-        line-height: 1.2 !important;
-    }
-
-
-    /* ---------------------------------------------------------
-       STATISTICS CARDS
-       --------------------------------------------------------- */
-
-    .stats-grid {
-        width: 100% !important;
-        max-width: 100% !important;
-        display: grid !important;
-
-        /* One clean card per row on phone */
-        grid-template-columns: 1fr !important;
-
-        gap: 8px !important;
-        margin: 0 0 16px 0 !important;
-    }
-
-    .stat-card {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        min-height: 62px !important;
-
-        display: flex !important;
-        align-items: center !important;
-
-        padding: 10px 12px !important;
-        gap: 10px !important;
-
-        border-radius: 10px !important;
-        overflow: hidden !important;
-    }
-
-    .stat-card-icon {
-        width: 34px !important;
-        height: 34px !important;
-        min-width: 34px !important;
-
-        display: flex !important;
+        display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
 
         font-size: 0.8rem !important;
     }
 
-    .stat-card > div,
-    .stat-card .stat-content {
+
+    /* ---------------- PAGE HEADER ---------------- */
+
+    .page-header {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+
+        gap: 5px !important;
+
+        margin-bottom: 12px !important;
+    }
+
+    .page-title {
+        font-size: 1.15rem !important;
+        line-height: 1.3 !important;
+
+        margin: 0 !important;
+    }
+
+    .page-subtitle {
+        font-size: 0.7rem !important;
+        line-height: 1.4 !important;
+
+        margin: 0 !important;
+    }
+
+    .page-actions {
+        width: 100% !important;
+
+        display: flex !important;
+        align-items: center !important;
+        flex-wrap: wrap !important;
+
+        gap: 6px !important;
+    }
+
+    .badge {
+        font-size: 0.65rem !important;
+        padding: 4px 8px !important;
+    }
+
+
+    /* ---------------- STAT CARDS ---------------- */
+
+    /*
+       Keep the natural mobile layout.
+       Do NOT force desktop cards into tiny columns.
+    */
+
+    .stats-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+
+        gap: 8px !important;
+    }
+
+    .stat-card {
+        width: 100% !important;
+        max-width: 100% !important;
+
         min-width: 0 !important;
-        flex: 1 !important;
+
+        padding: 10px 12px !important;
+
+        display: flex !important;
+        align-items: center !important;
+
+        gap: 8px !important;
+
+        box-sizing: border-box !important;
+    }
+
+    .stat-card-icon {
+        flex: 0 0 auto !important;
+
+        width: 30px !important;
+        height: 30px !important;
+
+        font-size: 0.75rem !important;
     }
 
     .stat-value {
         font-size: 1rem !important;
         line-height: 1.2 !important;
-        margin: 0 !important;
     }
 
     .stat-label {
         font-size: 0.62rem !important;
         line-height: 1.3 !important;
-        margin-top: 2px !important;
-        white-space: normal !important;
     }
 
     .stat-trend {
         font-size: 0.58rem !important;
-        margin-top: 2px !important;
     }
 
 
-    /* ---------------------------------------------------------
-       CONTENT CARDS
-       --------------------------------------------------------- */
+    /* ---------------- CONTENT CARDS ---------------- */
 
     .content-card {
         width: 100% !important;
         max-width: 100% !important;
-        min-width: 0 !important;
 
-        margin: 0 0 12px 0 !important;
+        margin-bottom: 12px !important;
+
+        box-sizing: border-box !important;
 
         border-radius: 10px !important;
+
         overflow: hidden !important;
     }
 
     .card-header-custom {
         width: 100% !important;
-        min-width: 0 !important;
 
         padding: 10px 12px !important;
 
         display: flex !important;
         align-items: center !important;
-        justify-content: space-between !important;
 
         gap: 6px !important;
         flex-wrap: wrap !important;
+
+        box-sizing: border-box !important;
     }
 
     .card-header-custom h3 {
         min-width: 0 !important;
-        margin: 0 !important;
 
-        display: flex !important;
-        align-items: center !important;
-
-        font-size: 0.78rem !important;
+        font-size: 0.8rem !important;
         line-height: 1.3 !important;
 
-        overflow-wrap: break-word !important;
+        margin: 0 !important;
     }
 
     .card-header-custom h3 i {
-        flex-shrink: 0 !important;
         font-size: 0.75rem !important;
     }
 
     .card-header-custom .text-muted {
-        width: 100% !important;
         font-size: 0.62rem !important;
-        line-height: 1.4 !important;
     }
 
     .card-header-custom .btn-sm {
-        font-size: 0.6rem !important;
+        font-size: 0.62rem !important;
         padding: 4px 8px !important;
-        white-space: nowrap !important;
     }
 
     .card-body {
         width: 100% !important;
         max-width: 100% !important;
+
         padding: 10px 12px !important;
-        min-width: 0 !important;
+
+        box-sizing: border-box !important;
+
+        overflow: hidden !important;
     }
 
 
-    /* ---------------------------------------------------------
-       CHARTS
-       --------------------------------------------------------- */
+    /* ---------------- GRAPHS ---------------- */
+
+    /*
+       IMPORTANT:
+       Do not force a fixed canvas width/height.
+       Let Chart.js calculate the responsive size.
+    */
 
     .card-body canvas {
         display: block !important;
@@ -3365,20 +3339,13 @@ svg defs { display: none; }
         width: 100% !important;
         max-width: 100% !important;
 
-        height: 180px !important;
-        max-height: 180px !important;
-
         box-sizing: border-box !important;
     }
 
 
-    /* ---------------------------------------------------------
-       TABLES
-       --------------------------------------------------------- */
+    /* ---------------- TABLES ---------------- */
 
     .table-responsive {
-        display: block !important;
-
         width: 100% !important;
         max-width: 100% !important;
 
@@ -3389,67 +3356,53 @@ svg defs { display: none; }
     }
 
     .data-table {
-        width: 100% !important;
         font-size: 0.65rem !important;
     }
 
     .data-table thead th,
     .data-table tbody td {
-        padding: 6px 7px !important;
+        padding: 5px 7px !important;
         font-size: 0.62rem !important;
+
         white-space: nowrap !important;
     }
 
     .data-table .user-thumb,
     .data-table .user-thumb-placeholder {
-        width: 24px !important;
-        height: 24px !important;
-        min-width: 24px !important;
-    }
-
-    .data-table .user-thumb-placeholder {
-        font-size: 0.6rem !important;
-    }
-
-    .data-table .action-btns {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: 4px !important;
+        width: 22px !important;
+        height: 22px !important;
     }
 
     .data-table .action-btns .btn-icon {
-        width: 26px !important;
-        height: 26px !important;
-        min-width: 26px !important;
+        width: 25px !important;
+        height: 25px !important;
 
-        font-size: 0.62rem !important;
+        font-size: 0.6rem !important;
     }
 
 
-    /* ---------------------------------------------------------
-       FOOTER
-       --------------------------------------------------------- */
+    /* ---------------- FOOTER ---------------- */
 
     .app-footer {
         width: 100% !important;
         max-width: 100% !important;
 
-        padding: 14px 12px !important;
+        padding: 12px !important;
 
-        overflow: hidden !important;
+        box-sizing: border-box !important;
     }
 
     .footer-content {
         width: 100% !important;
-        max-width: 100% !important;
 
         display: flex !important;
         flex-direction: column !important;
+
         align-items: center !important;
         justify-content: center !important;
 
-        gap: 8px !important;
+        gap: 5px !important;
+
         text-align: center !important;
     }
 
@@ -3457,12 +3410,12 @@ svg defs { display: none; }
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 5px !important;
+
+        gap: 4px !important;
     }
 
     .footer-logo {
-        font-size: 0.78rem !important;
-        line-height: 1.3 !important;
+        font-size: 0.8rem !important;
     }
 
     .footer-text {
@@ -3474,11 +3427,10 @@ svg defs { display: none; }
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
 
-        gap: 3px !important;
-        font-size: 0.56rem !important;
+        gap: 2px !important;
 
+        font-size: 0.55rem !important;
         text-align: center !important;
     }
 
@@ -3487,12 +3439,10 @@ svg defs { display: none; }
     }
 
 
-    /* ---------------------------------------------------------
-       IMAGES / MEDIA
-       --------------------------------------------------------- */
+    /* ---------------- IMAGES ---------------- */
 
     .content-card img,
-    .page-content img {
+    .card-body img {
         max-width: 100% !important;
         height: auto !important;
     }
@@ -3500,50 +3450,36 @@ svg defs { display: none; }
 
 
 /* ============================================================
-   VERY SMALL PHONES — 320px to 400px
+   VERY SMALL PHONES
    ============================================================ */
 
 @media (max-width: 400px) {
 
     .top-navbar {
-        height: 52px !important;
-        min-height: 52px !important;
+        height: 54px !important;
+        min-height: 54px !important;
+
         padding: 0 8px !important;
     }
 
     .top-navbar .sidebar-toggle {
         width: 30px !important;
         height: 30px !important;
-        min-width: 30px !important;
-    }
-
-    .top-navbar .breadcrumb {
-        font-size: 0.62rem !important;
-        max-width: calc(100vw - 85px) !important;
-    }
-
-    .top-navbar .breadcrumb-item,
-    .top-navbar .breadcrumb-item a,
-    .top-navbar .breadcrumb-item.active {
-        font-size: 0.62rem !important;
     }
 
     .top-navbar .nav-icon-btn {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+
+        margin-left: 5px !important;
     }
 
-    .page-content,
-    .main-content {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .page-container,
-    .content-container {
-        padding-left: 10px !important;
-        padding-right: 10px !important;
+    .top-navbar .breadcrumb,
+    .top-navbar .breadcrumb-item,
+    .top-navbar .breadcrumb-item a,
+    .top-navbar .breadcrumb-item.active {
+        font-size: 0.65rem !important;
     }
 
     .page-title {
@@ -3551,50 +3487,29 @@ svg defs { display: none; }
     }
 
     .page-subtitle {
-        font-size: 0.64rem !important;
-    }
-
-    .stats-grid {
-        gap: 7px !important;
+        font-size: 0.65rem !important;
     }
 
     .stat-card {
-        min-height: 60px !important;
         padding: 9px 10px !important;
     }
 
     .stat-card-icon {
-        width: 32px !important;
-        height: 32px !important;
-        min-width: 32px !important;
-    }
-
-    .stat-value {
-        font-size: 0.95rem !important;
-    }
-
-    .stat-label {
-        font-size: 0.58rem !important;
+        width: 28px !important;
+        height: 28px !important;
     }
 
     .content-card {
         border-radius: 9px !important;
     }
 
-    .card-header-custom {
-        padding: 9px 10px !important;
-    }
-
+    .card-header-custom,
     .card-body {
-        padding: 9px 10px !important;
-    }
-
-    .card-body canvas {
-        height: 160px !important;
-        max-height: 160px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
     }
 
     .app-footer {
-        padding: 12px 10px !important;
+        padding: 10px !important;
     }
 }
